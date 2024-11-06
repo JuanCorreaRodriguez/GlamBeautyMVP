@@ -1,0 +1,463 @@
+<div class="cCont">
+  <div class="mainCatalog">
+    <img class="moon" src="../../../assets/img/bg_moon_01.webp" alt="" />
+    <div class="head">
+      <h3>Glam Beauty Salon</h3>
+      <h2>Conoce todos los productos que tenemos para ti..!</h2>
+    </div>
+    <!-- Actions -->
+    <div class="search">
+      <!-- Search -->
+      <form [formGroup]="formSearch" class="searchForm">
+        <mat-form-field appearance="fill" dense>
+          <mat-label>Buscar por nombre, sku o descripción...</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="keyword"
+            [(ngModel)]="searchTerm"
+            (input)="filterEntries()"
+            placeholder="Buscar por nombre, sku o descripción..."
+          />
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+
+  <!-- 
+
+    START SEARCH:::Last products created-updated
+  
+  -->
+  <div class="lastCreated" *ngIf="filterdProd && filteredProdList.length > 0">
+    <h3
+      *ngIf="
+        filteredProdList.length == 0 &&
+        filteredServList.length == 0 &&
+        filteredPromList.length == 0
+      "
+    >
+      Sin resultados
+    </h3>
+    <!-- Categories Cards -->
+    <div class="catsCardsCont">
+      <div class="cardCat" *ngFor="let c of filteredProdList; let i = index">
+        <div class="prodImg" (click)="details('product', c.sku)">
+          <img class="abs" [src]="checkImage(i, 'products')" alt="" />
+          <div class="maskProd"></div>
+        </div>
+        <div class="cardHeader">
+          <h2 (click)="details('product', c.sku)">
+            {{ c.name | ellipsis : 30 }}
+          </h2>
+
+          <div class="prodBrand" (click)="details('product', c.sku)">
+            <img
+              *ngIf="c.brand.includes('hula')"
+              src="../../../assets/img/chula_logo.png"
+              alt=""
+            />
+            <img
+              *ngIf="c.brand.includes('mh') || c.brand.includes('MH')"
+              src="../../../assets/img/mh_logo.png"
+              alt=""
+            />
+            <img
+              *ngIf="c.brand.includes('ovely')"
+              src="../../../assets/img/lovely_logo.png"
+              alt=""
+            />
+            <img
+              *ngIf="c.brand.includes('tudio')"
+              src="../../../assets/img/studio_log.png"
+              alt=""
+            />
+            <img
+              *ngIf="c.brand.includes('pizima')"
+              src="../../../assets/img/wapizima_logo.png"
+              alt=""
+            />
+          </div>
+
+          <mat-icon (click)="addToCart(c)">add_shopping_cart</mat-icon>
+        </div>
+
+        <div class="descBody" (click)="details('product', c.sku)">
+          <p>{{ c.desc | ellipsis : 80 }}</p>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="cardBody" (click)="details('product', c.sku)">
+          <div class="bodyA">
+            <p><mat-icon>category</mat-icon>{{ c.category }}</p>
+            <p><mat-icon>military_tech</mat-icon>{{ c.brand }}</p>
+            <p><mat-icon>inventory_2</mat-icon>{{ c.stock }} disponibles</p>
+          </div>
+        </div>
+
+        <div class="pd" (click)="details('product', c.sku)">
+          <div class="discount" *ngIf="c.discount > 0">
+            <p>-{{ c.discount }}%</p>
+          </div>
+
+          <div class="price">
+            <p>${{ c.price }} <span>MXN</span></p>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+        <div class="bodyFooter" (click)="details('product', c.sku)">
+          <div class="succatsCont">
+            <div
+              class="subCats"
+              *ngFor="let sb of c.subcategories; let j = index"
+            >
+              <p>{{ sb.category }}</p>
+            </div>
+          </div>
+
+          <div class="ranking">
+            <p><mat-icon>star</mat-icon>{{ getTanking(c) }}</p>
+          </div>
+        </div>
+
+        <!-- <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>Más detalles</mat-panel-title>
+              <mat-panel-description>
+                .
+                <mat-icon>info</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+        </mat-accordion> -->
+      </div>
+    </div>
+  </div>
+
+  <!--Services -->
+  <div class="lastCreated" *ngIf="filterdServ && filteredServList.length > 0">
+    <h3>Servicios...</h3>
+    <!-- Services -->
+    <div class="serviceCardCont">
+      <div
+        class="cardCat serviceCard"
+        *ngFor="let c of filteredServList; let i = index"
+        (click)="details('service', c.sku)"
+      >
+        <div class="prodImg">
+          <img class="abs" [src]="checkImage(i, 'services')" alt="" />
+          <div class="maskProd"></div>
+        </div>
+        <div class="cardHeader">
+          <h2>{{ c.name | ellipsis : 30 }}</h2>
+        </div>
+        <div class="descBody">
+          <p>{{ c.desc | ellipsis : 80 }}</p>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="cardBody">
+          <p>Duración: {{ c.duration }}</p>
+          <p>{{ c.type }}</p>
+          <!-- <p>${{ c.price }} <span>MXN</span></p> -->
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="bodyFooter">
+          <div class="succatsCont">
+            <div
+              class="subCats"
+              *ngFor="let sb of c.subcategories; let j = index"
+            >
+              <p>{{ sb.category }}</p>
+            </div>
+          </div>
+
+          <div class="ranking">
+            <p><mat-icon>star</mat-icon>{{ getTanking(c) }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Promos -->
+  <div class="lastCreated" *ngIf="filterdProm && filteredPromList.length > 0">
+    <h3>Promos...</h3>
+    <!-- Promos -->
+    <swiper-container
+      id="swiperPromos"
+      #swiperPromos
+      class="swiperPromos"
+      [config]="configPromos"
+      [attr.data-swiper-autoplay]="1"
+    >
+      <div
+        class="swiper-slide slidesPromo"
+        *ngFor="let url of filteredPromList"
+        (click)="details('promo', url.sku)"
+      >
+        <div class="slide">
+          <img
+            [src]="url.images[0]"
+            alt=""
+            class="imgSlider"
+            [ngClass]="{ imgResized: resizeImage }"
+          />
+          <div class="abs"></div>
+          <div class="data2 abs">
+            <h2>{{ url.name }}</h2>
+            <p>{{ url.desc | ellipsis : 100 }}</p>
+            <p class="dateDura">
+              Fecha {{ url.from | date }} - {{ url.to | date }}
+            </p>
+            <h2 class="discount">
+              <span *ngIf="url.type.includes('$')">$</span>
+              {{ url.discount }}
+              <span *ngIf="url.type.includes('%')">%</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </swiper-container>
+  </div>
+  <!-- 
+ 
+    END SEARCH
+
+   -->
+
+  <!-- Categories -->
+  <swiper-container
+    id="swiper"
+    #swiper
+    class="swiper"
+    [config]="config"
+    [attr.data-swiper-autoplay]="1"
+  >
+    <div class="swiper-slide" *ngFor="let url of mCategories">
+      <div class="slide">
+        <img
+          [src]="checkCatImage(url)"
+          alt=""
+          class="imgSlider"
+          [ngClass]="{ imgResized: resizeImage }"
+        />
+        <div class="abs"></div>
+        <div class="data abs">
+          <h2>{{ url.name }}</h2>
+          <p>{{ url.desc | ellipsis : 100 }}</p>
+        </div>
+      </div>
+    </div>
+  </swiper-container>
+
+  <div *ngIf="!filterdProd">
+    <!-- Last products created-updated-->
+    <div class="lastCreated">
+      <h2>Últimos productos agregados...</h2>
+      <!-- Categories Cards -->
+      <div class="catsCardsCont">
+        <div class="cardCat" *ngFor="let c of productListLatest; let i = index">
+          <div class="prodImg" (click)="details('product', c.sku)">
+            <img class="abs" [src]="checkImage(i, 'products')" alt="" />
+            <div class="maskProd"></div>
+          </div>
+          <div class="cardHeader">
+            <h2 (click)="details('product', c.sku)">
+              {{ c.name | ellipsis : 30 }}
+            </h2>
+
+            <div class="prodBrand" (click)="details('product', c.sku)">
+              <img
+                *ngIf="c.brand.includes('hula')"
+                src="../../../assets/img/chula_logo.png"
+                alt=""
+              />
+              <img
+                *ngIf="c.brand.includes('mh') || c.brand.includes('MH')"
+                src="../../../assets/img/mh_logo.png"
+                alt=""
+              />
+              <img
+                *ngIf="c.brand.includes('ovely')"
+                src="../../../assets/img/lovely_logo.png"
+                alt=""
+              />
+              <img
+                *ngIf="c.brand.includes('tudio')"
+                src="../../../assets/img/studio_log.png"
+                alt=""
+              />
+              <img
+                *ngIf="c.brand.includes('pizima')"
+                src="../../../assets/img/wapizima_logo.png"
+                alt=""
+              />
+            </div>
+
+            <mat-icon (click)="addToCart(c)">add_shopping_cart</mat-icon>
+          </div>
+
+          <div class="descBody" (click)="details('product', c.sku)">
+            <p>{{ c.desc | ellipsis : 80 }}</p>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="cardBody" (click)="details('product', c.sku)">
+            <div class="bodyA">
+              <p><mat-icon>category</mat-icon>{{ c.category }}</p>
+              <p><mat-icon>military_tech</mat-icon>{{ c.brand }}</p>
+              <p><mat-icon>inventory_2</mat-icon>{{ c.stock }} disponibles</p>
+            </div>
+          </div>
+
+          <div class="pd" (click)="details('product', c.sku)">
+            <div class="discount" *ngIf="c.discount > 0">
+              <p>-{{ c.discount }}%</p>
+            </div>
+
+            <div class="price">
+              <p>${{ c.price }} <span>MXN</span></p>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+          <div class="bodyFooter" (click)="details('product', c.sku)">
+            <div class="succatsCont">
+              <div
+                class="subCats"
+                *ngFor="let sb of c.subcategories; let j = index"
+              >
+                <p>{{ sb.category }}</p>
+              </div>
+            </div>
+
+            <div class="ranking">
+              <p><mat-icon>star</mat-icon>{{ getTanking(c) }}</p>
+            </div>
+          </div>
+
+          <!-- <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Más detalles</mat-panel-title>
+                <mat-panel-description>
+                  .
+                  <mat-icon>info</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+            </mat-expansion-panel>
+          </mat-accordion> -->
+        </div>
+      </div>
+    </div>
+    <!-- Promos -->
+    <div class="lastCreated">
+      <h2>Nuestras promos...</h2>
+      <!-- Promos -->
+      <swiper-container
+        id="swiperPromos"
+        #swiperPromos
+        class="swiperPromos"
+        [config]="configPromos"
+        [attr.data-swiper-autoplay]="1"
+      >
+        <div
+          class="swiper-slide slidesPromo"
+          *ngFor="let url of promosList"
+          (click)="details('promo', url.sku)"
+        >
+          <div class="slide">
+            <img
+              [src]="url.images[0]"
+              alt=""
+              class="imgSlider"
+              [ngClass]="{ imgResized: resizeImage }"
+            />
+            <div class="abs"></div>
+            <div class="data2 abs">
+              <h2>{{ url.name }}</h2>
+              <p>{{ url.desc | ellipsis : 100 }}</p>
+              <p class="dateDura">
+                Fecha {{ url.from | date }} - {{ url.to | date }}
+              </p>
+              <h2 class="discount">
+                <span *ngIf="url.type.includes('$')">$</span>
+                {{ url.discount }}
+                <span *ngIf="url.type.includes('%')">%</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </swiper-container>
+    </div>
+    <!-- Last services created-updated -->
+    <div class="lastCreated">
+      <h2>Últimos servicios agregados...</h2>
+      <!-- Services -->
+      <div class="serviceCardCont">
+        <div
+          class="cardCat serviceCard"
+          *ngFor="let c of servicesList; let i = index"
+          (click)="details('service', c.sku)"
+        >
+          <div class="prodImg">
+            <img class="abs" [src]="checkImage(i, 'services')" alt="" />
+            <div class="maskProd"></div>
+          </div>
+          <div class="cardHeader">
+            <h2>{{ c.name | ellipsis : 30 }}</h2>
+          </div>
+          <div class="descBody">
+            <p>{{ c.desc | ellipsis : 80 }}</p>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="cardBody">
+            <p>Duración: {{ c.duration }}</p>
+            <p>{{ c.type }}</p>
+            <!-- <p>${{ c.price }} <span>MXN</span></p> -->
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="bodyFooter">
+            <div class="succatsCont">
+              <div
+                class="subCats"
+                *ngFor="let sb of c.subcategories; let j = index"
+              >
+                <p>{{ sb.category }}</p>
+              </div>
+            </div>
+
+            <div class="ranking">
+              <p><mat-icon>star</mat-icon>{{ getTanking(c) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Más detalles</mat-panel-title>
+            <mat-panel-description>
+              .
+              <mat-icon>info</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+      </mat-accordion> -->

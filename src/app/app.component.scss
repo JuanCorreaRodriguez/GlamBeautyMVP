@@ -1,0 +1,80 @@
+@import "../theme/global.scss";
+//*************************** Loader ***************
+.loaderInvite {
+  background: var(--globalBg);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999999999999999999999999999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  img {
+    width: 50px;
+    height: 50px;
+  }
+  .spinnerLoader {
+    margin-top: 1em !important;
+  }
+}
+.mainContainer {
+  margin-top: 0px !important;
+  padding: 0 !important;
+  position: relative;
+  padding-top: 50px !important;
+  box-sizing: border-box;
+  min-height: 100vh !important;
+  overflow-y: auto;
+  background: var(--globalBg) !important;
+}
+.mContainer {
+  min-height: calc(100vh - 50px) !important;
+  height: calc(100vh - 50px) !important;
+  padding: 0 !important;
+}
+.outlet {
+  height: 100% !important;
+  max-height: 100% !important;
+  min-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+}
+
+:ng-deep .mat-mdc-button .mat-icon {
+  margin-left: 0 !important;
+  margin-right: 0px !important;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  font-size: 24px !important;
+  height: max-content !important;
+  width: 26px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mat-mdc-button .mat-icon {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  font-size: 24px !important;
+  height: max-content !important;
+  width: 26px !important;
+}
+
+::ng-deep .mat-step-header {
+  height: max-content !important;
+  min-height: max-content !important;
+}
+::ng-deep .mat-step-label {
+  white-space: pre-wrap !important;
+  white-space: break-spaces !important;
+}

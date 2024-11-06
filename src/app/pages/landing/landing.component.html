@@ -1,0 +1,234 @@
+<app-main-toolbar></app-main-toolbar>
+
+<div class="landCont">
+  <div class="mainCatalog">
+    <img class="moon" src="../../../assets/img/bg_moon_02.webp" alt="" />
+    <div class="head">
+      <h3>Glam Beauty Salon</h3>
+      <h2>
+        ¡Descubre la magia en tus manos con nuestro exclusivo catálogo de
+        Material para Nail-Artists!
+      </h2>
+
+      <div class="mainImge">
+        <img src="../../../assets/img/glam_products.png" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <div class="desc">
+    <h2 class="titles">
+      En nuestra tienda, fusionamos la creatividad con la calidad de marcas
+      líderes como Chula Nails, Wapizima Nails, Studio Nails, MH Nails, Lovely
+      Nails. Desde esculpir hasta destacar con gel semi-permanente, tenemos todo
+      lo que necesitas para hacer brillar tu arte en cada aplicación de uñas.
+    </h2>
+  </div>
+
+  <div class="brands">
+    <img src="../../../assets/img/chula_logo.png" alt="" />
+    <img src="../../../assets/img/lovely_logo.png" alt="" />
+    <img src="../../../assets/img/mh_logo.png" alt="" />
+    <img src="../../../assets/img/studio_log.png" alt="" />
+    <img src="../../../assets/img/wapizima_logo.png" alt="" />
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <swiper-container
+      class="mySwiper swiperGallery"
+      effect="coverflow"
+      grab-cursor="true"
+      autoplay-delay="2500"
+      autoplay-disable-on-interaction="false"
+      centered-slides="true"
+      slides-per-view="auto"
+      coverflow-effect-rotate="50"
+      coverflow-effect-stretch="0"
+      coverflow-effect-depth="100"
+      coverflow-effect-modifier="1"
+      coverflow-effect-slide-shadows="true"
+    >
+      <swiper-slide>
+        <img src=" https://swiperjs.com/demos/images/nature-1.jpg" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <!-- Products -->
+  <div class="sec01">
+    <div class="a">
+      <img src="../../../assets/media/products.png" alt="" />
+    </div>
+    <div class="b">
+      <h2 class="titles t2">Catalogo Glam</h2>
+      <p class="subtitles">
+        Explora el universo de la belleza en nuestras estanterías virtuales,
+        repletas de tesoros de Chula Nails, la elegancia de Wapizima Nails, la
+        innovación de Studio Nails, la durabilidad de MH Nails, y la
+        sofisticación de Lovely Nails. ¡Déjate llevar por la excelencia que solo
+        los mejores proveedores pueden ofrecer!
+        <br />
+        <br />
+        ¿Listo para llevar tus uñas al siguiente nivel? Haz clic en "Explorar
+        Catálogo" y sumérgete en un mundo de posibilidades.
+        <br />
+        <br />
+      </p>
+      <button mat-button (click)="goCatalog()"><h2>Ir al catálogo</h2></button>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <div class="services">
+    <h2 class="titles">Nuestros servicios</h2>
+    <p class="subtitles">
+      Desde la aplicación de uñas esculturales hasta relajantes masajes,
+      ofrecemos servicios que van más allá del arte de las uñas. Sumérgete en la
+      experiencia completa con pestañas 3x3, peinado, maquillaje, lash lifting,
+      diseño y laminado de ceja, depilación con cera y cursos especializados.
+    </p>
+
+    <swiper-container
+      class="mySwiper swiperServices"
+      autoplay-delay="2500"
+      autoplay-disable-on-interaction="false"
+      effect="cards"
+      grab-cursor="true"
+    >
+      <swiper-slide>
+        <div class="mask abs"></div>
+        <img
+          class="abs"
+          src="../../../assets/img/service_aplicacion.jpg"
+          alt=""
+        />
+        <div class="abs data">
+          <h2>Aplicación de uñas</h2>
+          <button mat-button>Saber más</button>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="mask abs"></div>
+        <img class="abs" src="../../../assets/img/service_cursos.jpg" alt="" />
+        <div class="abs data">
+          <h2>Cursos</h2>
+          <button mat-button>Saber más</button>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="mask abs"></div>
+        <img class="abs" src="../../../assets/img/service_lash.jpg" alt="" />
+        <div class="abs data">
+          <h2>Lash lifting</h2>
+          <button mat-button>Saber más</button>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="mask abs"></div>
+        <img class="abs" src="../../../assets/img/service_masaje.jpg" alt="" />
+        <div class="abs data">
+          <h2>Masaje relajante</h2>
+          <button mat-button>Saber más</button>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="mask abs"></div>
+        <img class="abs" src="../../../assets/img/service_peinado.jpg" alt="" />
+        <div class="abs data">
+          <h2>Peinado</h2>
+          <button mat-button>Saber más</button>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="mask abs"></div>
+        <img class="abs" src="../../../assets/img/services_gel.jpg" alt="" />
+        <div class="abs data">
+          <h2>Gel semi-permanente</h2>
+          <button mat-button>Saber más</button>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+
+  <!-- SOCIAL PROOF -->
+  <h2 class="socialProogTitle">
+    Conoce lo que nuestros clientes dicen de nosotros...
+  </h2>
+  <swiper-container
+    class="mySwiper socialProofCont"
+    space-between="10"
+    centered-slides="true"
+    autoplay-delay="2500"
+    centered-slides="true"
+    slides-per-view="auto"
+    autoplay-disable-on-interaction="false"
+  >
+    <div class="swiper-slide" *ngFor="let url of mOpinions">
+      <div class="bg"></div>
+      <div class="slide">
+        <p>{{ url.resume | ellipsis : 150 }}</p>
+        <div class="sep"></div>
+        <h2 class="name">{{ url.name }}</h2>
+        <h2 class="date">{{ url.date }}</h2>
+      </div>
+    </div>
+  </swiper-container>
+
+  <footer>
+    <img src="../../../assets/img/bg_moon_02.webp" alt="" class="bgFooter" />
+    <div class="innerFooter">
+      <h2 class="titles fDesc">
+        Gracias por elegirnos para ser parte de tu viaje de belleza. Estamos
+        emocionados de ser tu compañero en cada aplicación de uñas, peinado,
+        maquillaje y más. ¡Descubre tu belleza única con nosotros!
+      </h2>
+      <div class="data">
+        <div class="a">
+          <h2 class="name">{{ mBusiness.name }}</h2>
+          <h2 class="desc">{{ mBusiness.desc | ellipsis : 30 }}</h2>
+          <mat-divider></mat-divider>
+          <h2 class="desc" *ngFor="let a of mBusiness.address">
+            <mat-icon>location_on</mat-icon>{{ a.a }}
+          </h2>
+          <mat-divider></mat-divider>
+          <h2 class="desc" *ngFor="let p of mBusiness.phones">
+            <mat-icon>call</mat-icon>{{ p.phone }}
+          </h2>
+        </div>
+        <div class="b">
+          <img class="glLogo" src="../../../assets/img/glam_logo.webp" alt="" />
+          <div class="socialMedia">
+            <img src="../../../assets/img/facebook_simple.svg" alt="" />
+            <img src="../../../assets/img/instagram_simple.svg" alt="" />
+            <img src="../../../assets/img/whatsapp_simple.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,244 @@
+<div class="mainCreateProduct">
+  <mat-dialog-content class="productContent" *ngIf="!uploading">
+    <h2 class="title" *ngIf="action == 'create'">Crear producto</h2>
+    <h2 class="title" *ngIf="action == 'update'">
+      Actualizar producto <span> ~ {{ model.sku }}</span>
+    </h2>
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="formProduct" class="formProd">
+      <!-- NAME -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre del producto</mat-label>
+          <input type="text" matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <!-- DESC -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción del producto</mat-label>
+          <textarea
+            #slogan
+            class="matFieldArea"
+            matInput
+            formControlName="desc"
+            type="text"
+            maxlength="500"
+            [value]="model.desc"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- PRICES DISCOUNTS -->
+      <div class="price-disc">
+        <div class="itempd1">
+          <mat-form-field appearance="fill">
+            <mat-label>Precio...</mat-label>
+            <input type="number" matInput formControlName="price" />
+          </mat-form-field>
+        </div>
+        <div class="itempd2">
+          <mat-form-field appearance="fill">
+            <mat-label>Descuento...</mat-label>
+            <input type="number" matInput formControlName="discount" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- STOCK -->
+      <div class="item stock">
+        <mat-form-field appearance="fill">
+          <mat-label>Inventario...</mat-label>
+          <input type="number" matInput formControlName="stock" />
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- BRANDS -->
+      <div class="brands">
+        <mat-select
+          formControlName="brand"
+          placeholder="Selecciona la marca..."
+        >
+          <mat-option *ngFor="let b of mBrand" [value]="b.brand">{{
+            b.brand
+          }}</mat-option>
+        </mat-select>
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- CATEGORY -->
+      <div class="catsSel">
+        <mat-select
+          formControlName="category"
+          placeholder="Selecciona la categoria..."
+        >
+          <mat-option *ngFor="let m of mCategory" [value]="m.name">{{
+            m.name
+          }}</mat-option>
+        </mat-select>
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- IMAGES -->
+      <div class="imageContainer">
+        <div class="imageHeader">
+          <h2>Imagenes</h2>
+          <div class="containerUpdateImage" (click)="loadImageProduct()">
+            <mat-spinner
+              *ngIf="loadingImages"
+              class="progressUpdateProfileImg"
+              [mode]="progressProfileImgMode"
+              [diameter]="20"
+              color="white"
+            ></mat-spinner>
+            <mat-icon
+              *ngIf="!loadingImages"
+              class="updateimage"
+              id="updateImageProfile"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+        <div class="imgCatCont" *ngIf="previews.length > 0">
+          <div class="innerImg" *ngFor="let img of previews; let i = index">
+            <img
+              loading="lazy"
+              [src]="img"
+              alt="UserProfile"
+              class="imgCatClass"
+            />
+            <button mat-button class="removeImg" (click)="removeImage(i)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <input
+          multiple
+          type="file"
+          [hidden]="true"
+          id="imgProfileUpdate"
+          accept=".png, .jpg, .jpeg"
+          (change)="updateCardImage($event)"
+        />
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- VIDEOS -->
+      <div class="imageContainer">
+        <div class="imageHeader">
+          <h2>Videos</h2>
+          <div class="containerUpdateImage" (click)="loadVideoProduct()">
+            <mat-icon
+              *ngIf="!uploading"
+              class="updateimage"
+              id="updateVideoProfile"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+
+        <div class="imgCatCont" *ngIf="model.videos.length > 0">
+          <div class="innerVid" *ngFor="let vid of model.videos; let i = index">
+            <video
+              controls
+              loading="lazy"
+              [src]="vid"
+              alt="UserProfile"
+              class="vidCatClass"
+            ></video>
+            <button mat-button class="removeVid" (click)="removeVideo(i)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <input
+          multiple
+          type="file"
+          [hidden]="true"
+          id="vidUpdate"
+          accept=".mp4"
+          (change)="updateVideo($event)"
+        />
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- SUBCATEGORIES LABELS -->
+      <!-- <div class="subcategoriesCont">
+        <div class="subcatAddCont">
+          <h2>Subcategorias</h2>
+        </div>
+      </div> -->
+      <!-- Dynamic subcategories labels -->
+
+      <mat-accordion class="subcategoriesCont example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Subcategorias - Etiquetas</mat-panel-title>
+            <mat-panel-description>
+              .
+              <mat-icon>sell</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="subcategories">
+            <div class="subcategoriesFlex">
+              <mat-checkbox
+                class="cbox"
+                color="primary"
+                #ckb
+                *ngFor="let sc of subcategoreis"
+                [checked]="checkIfChecked(sc)"
+                (change)="updateSubcategoriesSel(sc, ckb.checked)"
+                >{{ sc.subcategory }}</mat-checkbox
+              >
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-content class="productContent uploading" *ngIf="uploading">
+    <div class="loader">
+      <h2 *ngIf="action == 'update'">
+        Actualizando producto...por favor, espera ​😘​🔥​
+      </h2>
+      <h2 *ngIf="action == 'create'">
+        Subiendo producto...por favor, espera ​😘​🔥​
+      </h2>
+      <mat-spinner
+        class="progressUpdateProfileImg loaderProgress"
+        [mode]="progressProfileImgMode"
+        [diameter]="50"
+        color="primary"
+      ></mat-spinner>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="actions" *ngIf="!uploading">
+    <button mat-button class="matButton" mat-dialog-close *ngIf="!uploading">
+      <h2>Cancelar</h2>
+    </button>
+    <div class="blueButton" *ngIf="uploading">
+      <mat-spinner
+        class="progressUpdateProfileImg"
+        [mode]="progressProfileImgMode"
+        [diameter]="20"
+        color="white"
+      ></mat-spinner>
+    </div>
+    <button
+      mat-flat-button
+      class="matButton blueButton confirm"
+      *ngIf="!uploading"
+      (click)="createProduct(formProduct, action)"
+    >
+      <h2 *ngIf="action == 'create'">Crear producto</h2>
+      <h2 *ngIf="action == 'update'">Guardar cambios</h2>
+    </button>
+  </mat-dialog-actions>
+</div>

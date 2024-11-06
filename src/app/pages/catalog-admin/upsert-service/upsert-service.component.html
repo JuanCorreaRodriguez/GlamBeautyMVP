@@ -1,0 +1,221 @@
+<div class="mainCreateProduct">
+  <mat-dialog-content class="productContent" *ngIf="!uploading">
+    <h2 class="title" *ngIf="action == 'create'">Crear servicio</h2>
+    <h2 class="title" *ngIf="action == 'update'">
+      Actualizar servicio <span> ~ {{ mService.sku }}</span>
+    </h2>
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="formService" class="formProd">
+      <!-- NAME -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre del servicio</mat-label>
+          <input type="text" matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <!-- DESC -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción del servicio</mat-label>
+          <textarea
+            #slogan
+            class="matFieldArea"
+            matInput
+            formControlName="desc"
+            type="text"
+            maxlength="500"
+            [value]="mService.desc"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Author -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Titular</mat-label>
+          <input type="text" matInput formControlName="author" />
+        </mat-form-field>
+      </div>
+
+      <!-- Price -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Precio</mat-label>
+          <input type="number" matInput formControlName="price" />
+        </mat-form-field>
+      </div>
+
+      <!-- Duration -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Duración</mat-label>
+          <input type="string" matInput formControlName="duration" />
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Type -->
+      <div class="catsSel">
+        <mat-select
+          formControlName="type"
+          placeholder="Selecciona el tipo de servicio..."
+        >
+          <mat-option *ngFor="let m of mTyps" [value]="m">{{ m }}</mat-option>
+        </mat-select>
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- IMAGES -->
+      <div class="imageContainer">
+        <div class="imageHeader">
+          <h2>Imagenes</h2>
+          <div class="containerUpdateImage" (click)="loadImageProduct()">
+            <mat-spinner
+              *ngIf="loadingImages"
+              class="progressUpdateProfileImg"
+              [mode]="progressProfileImgMode"
+              [diameter]="20"
+              color="white"
+            ></mat-spinner>
+            <mat-icon
+              *ngIf="!loadingImages"
+              class="updateimage"
+              id="updateImageProfile"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+        <div class="imgCatCont" *ngIf="previews.length > 0">
+          <div class="innerImg" *ngFor="let img of previews; let i = index">
+            <img
+              loading="lazy"
+              [src]="img"
+              alt="UserProfile"
+              class="imgCatClass"
+            />
+            <button mat-button class="removeImg" (click)="removeImage(i)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <input
+          multiple
+          type="file"
+          [hidden]="true"
+          id="imgProfileUpdate"
+          accept=".png, .jpg, .jpeg"
+          (change)="updateCardImage($event)"
+        />
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- VIDEOS -->
+      <div class="imageContainer">
+        <div class="imageHeader">
+          <h2>Videos</h2>
+          <div class="containerUpdateImage" (click)="loadVideoProduct()">
+            <mat-icon
+              *ngIf="!uploading"
+              class="updateimage"
+              id="updateVideoProfile"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+
+        <div class="imgCatCont" *ngIf="mService.videos.length > 0">
+          <div
+            class="innerVid"
+            *ngFor="let vid of mService.videos; let i = index"
+          >
+            <video
+              controls
+              loading="lazy"
+              [src]="vid"
+              alt="UserProfile"
+              class="vidCatClass"
+            ></video>
+            <button mat-button class="removeVid" (click)="removeVideo(i)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <input
+          multiple
+          type="file"
+          [hidden]="true"
+          id="vidUpdate"
+          accept=".mp4"
+          (change)="updateVideo($event)"
+        />
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- SUBCATEGORIES LABELS -->
+      <div class="subcategoriesCont">
+        <div class="subcatAddCont">
+          <h2>Subcategorias</h2>
+        </div>
+      </div>
+      <!-- Dynamic subcategories labels -->
+      <div class="subcategories">
+        <div class="subcategoriesFlex">
+          <mat-checkbox
+            class="cbox"
+            color="primary"
+            #ckb
+            *ngFor="let sc of subcategoreis"
+            [checked]="checkIfChecked(sc)"
+            (change)="updateSubcategoriesSel(sc, ckb.checked)"
+            >{{ sc.subcategory }}</mat-checkbox
+          >
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-content class="productContent uploading" *ngIf="uploading">
+    <div class="loader">
+      <h2 *ngIf="action == 'update'">
+        Actualizando servicio...por favor, espera ​😘​🔥​
+      </h2>
+      <h2 *ngIf="action == 'create'">
+        Subiendo servicio...por favor, espera ​😘​🔥​
+      </h2>
+      <mat-spinner
+        class="progressUpdateProfileImg loaderProgress"
+        [mode]="progressProfileImgMode"
+        [diameter]="50"
+        color="primary"
+      ></mat-spinner>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="actions" *ngIf="!uploading">
+    <button mat-button class="matButton" mat-dialog-close *ngIf="!uploading">
+      <h2>Cancelar</h2>
+    </button>
+    <div class="blueButton" *ngIf="uploading">
+      <mat-spinner
+        class="progressUpdateProfileImg"
+        [mode]="progressProfileImgMode"
+        [diameter]="20"
+        color="white"
+      ></mat-spinner>
+    </div>
+    <button
+      mat-flat-button
+      class="matButton blueButton confirm"
+      *ngIf="!uploading"
+      (click)="createService(formService, action)"
+    >
+      <h2 *ngIf="action == 'create'">Crear servicio</h2>
+      <h2 *ngIf="action == 'update'">Guardar cambios</h2>
+    </button>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,58 @@
+<!-- Actions -->
+<div class="search">
+  <!-- Search -->
+  <form [formGroup]="formSearch" class="searchForm">
+    <mat-form-field appearance="fill" dense>
+      <mat-label>Buscar por nombre...</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="keyword"
+        [(ngModel)]="searchTerm"
+        (input)="filterEntries()"
+        placeholder="Buscar por nombre o SKU..."
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </form>
+
+  <div class="item">
+    <button
+      mat-button
+      class="matButton"
+      matTooltip="Agregar producto"
+      (click)="createCategory('create')"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+<!-- Categories Cards -->
+<div class="catsCardsCont">
+  <div class="cardCat" *ngFor="let c of filteredList; let i = index">
+    <img [src]="checkImage(i)" alt="" />
+    <div class="cardHeader">
+      <h2>{{ c.name }}</h2>
+      <mat-icon [matMenuTriggerFor]="menu">expand_more</mat-icon
+      ><mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editCategory(c)">
+          <mat-icon>edit</mat-icon>
+          <h2>Editar</h2>
+        </button>
+        <button mat-menu-item (click)="deleteCategory(c)">
+          <mat-icon class="red">delete</mat-icon>
+          <h2>Eliminar</h2>
+        </button>
+      </mat-menu>
+    </div>
+    <div class="cardBody">
+      <p>{{ c.desc }}</p>
+      <div class="succatsCont">
+        <div class="subCats" *ngFor="let sb of c.subcategories; let j = index">
+          <p>{{ sb.subcategory }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

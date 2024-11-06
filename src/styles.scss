@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Global Boxes */
+.gBox {
+  background-color: transparent;
+  box-shadow: 0px 0px 12px var(--shadow) !important;
+  backdrop-filter: blur(15px);
+  padding: 1em;
+  border: 0px solid transparent;
+  border-radius: var(--gBorderRadius);
+  z-index: 99;
+}
+/* Global Boxes */
+.gBox2 {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px var(--shadow) !important;
+  backdrop-filter: blur(18px);
+  padding: 1em;
+  border: 1px solid var(--globalBgBlurLine);
+  border-radius: var(--gBorderRadius);
+  z-index: 9;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  transition: all 0.5s ease-in-out;
+}
+::-webkit-scrollbar:vertical {
+  height: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--globalBg);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--scroll);
+  border-radius: 2px;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll);
+  transition: all 0.5s ease-in-out;
+}
+
+/* width */
+.menuSide::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+.menuSide::-webkit-scrollbar:vertical {
+  height: 2px;
+}
+
+/* Track */
+.menuSide::-webkit-scrollbar-track {
+  background: var(--globalBg);
+}

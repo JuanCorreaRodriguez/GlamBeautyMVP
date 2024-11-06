@@ -1,0 +1,258 @@
+.detailsCont {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: calc(100vh - 50px) !important;
+  max-height: calc(100vh - 50px) !important;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+.secMedia {
+  width: 50%;
+  max-width: 50%;
+  flex: 1 0 50%;
+  padding: 1.5em !important;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.gallery {
+  width: 20%;
+  max-width: 20%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+  .galleryCont {
+    width: 5em;
+    height: 5em;
+    border-radius: 0.5em;
+    img,
+    video {
+      width: 5em;
+      height: 5em;
+      object-fit: cover;
+      border-radius: 0.5em;
+    }
+  }
+}
+.mainMedia {
+  width: 80%;
+  max-width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  img,
+  video {
+    width: 100%;
+    height: 80vh;
+    border-radius: 0.5em;
+    object-fit: cover;
+  }
+}
+.secData {
+  width: 50%;
+  max-width: 50%;
+  flex: 0 1 50%;
+  padding: 1.5em !important;
+  box-sizing: border-box;
+  .sku {
+    font-size: 10px !important;
+    color: var(--colorIcons) !important;
+  }
+  p {
+    margin-top: 0.5em !important;
+    font-weight: 600 !important;
+  }
+  h2 {
+    font-size: 28px !important;
+    font-weight: 600 !important;
+  }
+
+  .detailsProd {
+    h3 {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      margin-top: 0.5em !important;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .discount {
+      margin-top: 0.5em !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      span {
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+      }
+    }
+    .author {
+      margin-top: 0.5em !important;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2em !important;
+    gap: 1.5em;
+    button {
+      min-width: 5em !important;
+      height: 5em !important;
+      padding: 0.5em !important;
+      .mat-icon {
+        font-size: 32px !important;
+        width: 28px !important;
+        height: 28px !important;
+        background: var(--scroll);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+}
+.prodBrand {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  img {
+    width: 2.5em !important;
+    height: auto;
+  }
+  .brand {
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    margin: 0 !important;
+  }
+
+  .price {
+    width: calc(100% - 2.5em + 2em);
+    margin-top: 0em !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-align: end !important;
+    display: block !important;
+  }
+}
+.succatsCont {
+  display: flex;
+  align-items: center;
+  gap: 0.15em;
+  box-sizing: border-box;
+  padding: 0.5em 0em;
+  flex-wrap: wrap;
+  width: 65%;
+  flex: 1 0 65%;
+}
+.subCats {
+  p {
+    width: max-content;
+    padding: 0.5em !important;
+    border-radius: 0.5em;
+    background: var(--globalField) !important;
+  }
+}
+.ranking {
+  width: 35%;
+  flex: 0 1 35%;
+  p {
+    width: 100% !important;
+    min-width: 100% !important;
+    font-size: 18px !important;
+    display: flex;
+    text-align: end !important;
+    align-items: center;
+    padding: 0.5em !important;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    font-weight: 600 !important;
+    box-sizing: border-box;
+    .mat-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px !important;
+      color: yellow !important;
+    }
+  }
+}
+.notSelected {
+  opacity: 0.35;
+}
+
+/*
+*
+* Mobile
+*
+*/
+@media (max-width: 760px) {
+  .detailsCont {
+    height: max-content !important;
+    max-height: max-content !important;
+    flex-wrap: wrap;
+  }
+  .secMedia {
+    width: 99%;
+    max-width: 99%;
+    flex: 1 0 99%;
+    flex-wrap: wrap;
+    height: 65vh !important;
+  }
+  .gallery {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: row;
+    gap: 0.5em;
+    .galleryCont {
+      width: 2.5em;
+      height: 2.5em;
+      border-radius: 0.5em;
+      img {
+        width: 2.5em;
+        height: 2.5em;
+        object-fit: cover;
+        border-radius: 0.5em;
+      }
+    }
+  }
+  .mainMedia {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1em auto;
+    img {
+      width: 100%;
+      height: 50vh;
+      border-radius: 0.5em;
+      object-fit: cover;
+    }
+  }
+  .secData {
+    width: 99%;
+    max-width: 99%;
+    flex: 0 1 99%;
+    padding: 1.5em !important;
+    box-sizing: border-box;
+    position: relative;
+    .actions {
+      position: absolute;
+      top: -2.5em;
+      right: 2em;
+      margin-top: -1.5em !important;
+      button {
+        width: 7em !important;
+        height: 5em !important;
+        padding: 0.5em !important;
+        border-radius: 0.5em;
+        background-color: var(--globalField);
+        box-shadow: 0 0 8px var(--shadow);
+      }
+    }
+  }
+}

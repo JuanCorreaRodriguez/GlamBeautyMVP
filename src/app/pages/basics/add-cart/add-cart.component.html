@@ -1,0 +1,32 @@
+<div class="setAmountCont">
+  <mat-dialog-content>
+    <h2>{{ mProduct.name }}</h2>
+    <p>{{ mProduct.desc | ellipsis : 50 }}</p>
+    <!-- Search -->
+    <form [formGroup]="formAmount" class="form">
+      <mat-form-field appearance="fill" dense>
+        <mat-label>Cantidad para el producto...</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="amount"
+          placeholder="Cantidad..."
+        />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="menuActions">
+    <button mat-button [mat-dialog-close]="false" mat-dialog-close>
+      Cancel
+    </button>
+    <button
+      (click)="addToCart(formAmount)"
+      class="matButton blueButton"
+      mat-button
+      [mat-dialog-close]="true"
+    >
+      Agregar a mi pedido
+    </button>
+  </mat-dialog-actions>
+</div>

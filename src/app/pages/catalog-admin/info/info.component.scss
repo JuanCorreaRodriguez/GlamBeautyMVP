@@ -1,0 +1,199 @@
+.infoCont {
+  width: 60%;
+  max-width: 60%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 1em;
+  margin: 2em auto 0em auto;
+  box-sizing: border-box;
+  h2 {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+  }
+  .brandForm {
+    width: 100%;
+  }
+}
+.mat-form-field-infix {
+  width: calc(100% - 0px) !important;
+  max-width: calc(100% - 0px) !important;
+}
+.mat-mdc-form-field {
+  width: calc(100% - 0px) !important;
+  max-width: calc(100% - 0px) !important;
+}
+.addressCont {
+  margin: 2em 0.5em;
+  padding: 1em;
+  box-sizing: border-box;
+  background-color: var(--globalField);
+  border-radius: 0.5em;
+  .subcatAddCont {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    h2 {
+      width: 80%;
+      flex: 1 0 80%;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+    }
+    .addCont {
+      width: 20%;
+      flex: 0 1 20%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .mat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px !important;
+        background: var(--scroll);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+}
+.matFieldArea {
+  min-height: 10em;
+}
+.levelContainerChild,
+.formChild {
+  min-height: 3.5em;
+  width: calc(100% - 1em);
+  max-width: calc(100% - 1em);
+  margin: 0.05em auto;
+  padding: 0.35em !important;
+  border-radius: 0.5em !important;
+  background-color: var(--blurBackgroundBox);
+}
+.levelParamContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  box-sizing: border-box;
+  .fields {
+    flex: 1 0 auto;
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    .mat-form-field-infix {
+      width: calc(100% - 30px) !important;
+      max-width: calc(100% - 30px) !important;
+    }
+    .mat-mdc-form-field {
+      width: calc(100% - 30px) !important;
+      max-width: calc(100% - 30px) !important;
+    }
+  }
+  .delete {
+    flex: 0 1 auto;
+    .mat-icon {
+      color: crimson;
+      width: 30px !important;
+      transition: all 0.5em ease-in-out;
+    }
+  }
+}
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+.scheduleCont {
+  width: 100%;
+  margin-top: 2em;
+  .day {
+    margin-top: 2em;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    .mat-icon {
+      width: 32px !important;
+    }
+    .innerDay {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      background: var(--globalField);
+      padding: 0.5em;
+      border-radius: 0.5em;
+      h2 {
+        flex: 1 0 60%;
+        text-align: center;
+        font-size: 18px !important;
+        font-weight: 600 !important;
+      }
+      button {
+        flex: 0 1 auto;
+        min-width: 60%;
+        min-height: 2.5em;
+        .mat-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 5em;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+.panelIC {
+  margin-right: 0.5em !important;
+}
+.chipListSection {
+  margin-top: 2em !important;
+  .mat-icon {
+    font-size: 16px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 760px) {
+  .infoCont {
+    width: 90%;
+    max-width: 90%;
+    gap: 1em;
+    margin: 2em auto 0em auto;
+    h2 {
+      font-size: 14px !important;
+    }
+  }
+  .scheduleCont {
+    margin-top: 1.5em;
+    .day {
+      margin-top: 1.5em;
+      .mat-icon {
+        width: 20px !important;
+      }
+      .innerDay {
+        gap: 0.35em;
+        padding: 0.35em;
+        h2 {
+          font-size: 13px !important;
+        }
+        button {
+          .mat-icon {
+            width: 5em;
+            font-size: 18px !important;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}

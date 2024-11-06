@@ -1,0 +1,68 @@
+<div class="resumeCont">
+  <div class="mainCatalog">
+    <img class="moon" src="../../../assets/img/bg_moon_02.webp" alt="" />
+    <div class="head">
+      <h3>Glam Beauty Salon</h3>
+      <h2>Resumen de mi pedido</h2>
+    </div>
+  </div>
+
+  <div class="itemsCont">
+    <div class="eRowItem" *ngFor="let item of mCart; let i = index">
+      <div class="row">
+        <div class="data">
+          <h2 class="itemName">
+            {{ item.product.name }} <span> x {{ item.amount }}</span>
+          </h2>
+          <p class="itemDesc">
+            {{ item.product.desc | ellipsis : 30 }}
+          </p>
+        </div>
+
+        <div class="priceTotal">
+          <h2>${{ getItemTotal(i) }} <span>MXN</span></h2>
+          <p class="ind">
+            Costo individual: ${{ item.product.price }} <span>MXN</span>
+          </p>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+
+  <div class="total">
+    <h2>
+      <h3>Total:</h3>
+      ${{ getCartTotal() }} <span>MXN</span>
+    </h2>
+  </div>
+
+  <div class="nameOrder">
+    <form [formGroup]="formName" class="form">
+      <mat-form-field appearance="fill" dense>
+        <mat-label>Por favor, escribe tu nombre...</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          placeholder="Por favor, escribe tu nombre..."
+        />
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="actions">
+    <button (click)="keepShopping()" mat-button class="keep">
+      Seguir comprando
+    </button>
+    <button
+      [disabled]="!formName.dirty"
+      [ngClass]="{ dis: !formName.dirty }"
+      (click)="shareWhatsApp()"
+      mat-button
+      class="ok"
+    >
+      <h2>Confirmar</h2>
+    </button>
+  </div>
+</div>

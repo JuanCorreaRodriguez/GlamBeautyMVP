@@ -1,0 +1,234 @@
+<div class="mainCreateProduct">
+  <mat-dialog-content class="productContent" *ngIf="!uploading">
+    <h2 class="title" *ngIf="action == 'create'">Crear Promo</h2>
+    <h2 class="title" *ngIf="action == 'update'">
+      Actualizar Promo <span> ~ {{ mPromo.sku }}</span>
+    </h2>
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="formPromo" class="formProd">
+      <!-- NAME -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre de la promo</mat-label>
+          <input type="text" matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <!-- DESC -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Descripción de la promo</mat-label>
+          <textarea
+            #slogan
+            class="matFieldArea"
+            matInput
+            formControlName="desc"
+            type="text"
+            maxlength="500"
+            [value]="mPromo.desc"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Discount -->
+      <div class="item discount">
+        <div class="a">
+          <mat-form-field appearance="fill">
+            <mat-label>Descuento</mat-label>
+            <input type="number" matInput formControlName="discount" />
+          </mat-form-field>
+        </div>
+
+        <!-- Type -->
+        <div class="b">
+          <mat-select formControlName="type" placeholder="Tipo de descuento...">
+            <mat-option *ngFor="let m of mTypesDiscount" [value]="m">{{
+              m
+            }}</mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+      <!-- Max -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Máx.uso</mat-label>
+          <input type="number" matInput formControlName="max" />
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- From - to -->
+      <div class="item discount">
+        <div class="a">
+          <mat-form-field appearance="fill">
+            <mat-label>Inicio</mat-label>
+            <input
+              matInput
+              (dateChange)="onDateChangeFrom($event)"
+              formControlName="from"
+              [matDatepicker]="pickerFROM"
+              [value]="eFrom"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="pickerFROM"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerFROM></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <!-- To -->
+        <div class="b">
+          <mat-form-field appearance="fill">
+            <mat-label>Termino</mat-label>
+            <input
+              (dateChange)="onDateChangeTo($event)"
+              matInput
+              formControlName="to"
+              [matDatepicker]="pickerTO"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="pickerTO"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerTO></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- IMAGES -->
+      <div class="imageContainer">
+        <div class="imageHeader">
+          <h2>Imagenes</h2>
+          <div class="containerUpdateImage" (click)="loadImageProduct()">
+            <mat-spinner
+              *ngIf="loadingImages"
+              class="progressUpdateProfileImg"
+              [mode]="progressProfileImgMode"
+              [diameter]="20"
+              color="white"
+            ></mat-spinner>
+            <mat-icon
+              *ngIf="!loadingImages"
+              class="updateimage"
+              id="updateImageProfile"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+        <div class="imgCatCont" *ngIf="previews.length > 0">
+          <div class="innerImg" *ngFor="let img of previews; let i = index">
+            <img
+              loading="lazy"
+              [src]="img"
+              alt="UserProfile"
+              class="imgCatClass"
+            />
+            <button mat-button class="removeImg" (click)="removeImage(i)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <input
+          multiple
+          type="file"
+          [hidden]="true"
+          id="imgProfileUpdate"
+          accept=".png, .jpg, .jpeg"
+          (change)="updateCardImage($event)"
+        />
+      </div>
+
+      <mat-divider></mat-divider>
+      <!-- VIDEOS -->
+      <div class="imageContainer">
+        <div class="imageHeader">
+          <h2>Videos</h2>
+          <div class="containerUpdateImage" (click)="loadVideoProduct()">
+            <mat-icon
+              *ngIf="!uploading"
+              class="updateimage"
+              id="updateVideoProfile"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+
+        <div class="imgCatCont" *ngIf="mPromo.videos.length > 0">
+          <div
+            class="innerVid"
+            *ngFor="let vid of mPromo.videos; let i = index"
+          >
+            <video
+              controls
+              loading="lazy"
+              [src]="vid"
+              alt="UserProfile"
+              class="vidCatClass"
+            ></video>
+            <button mat-button class="removeVid" (click)="removeVideo(i)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <input
+          multiple
+          type="file"
+          [hidden]="true"
+          id="vidUpdate"
+          accept=".mp4"
+          (change)="updateVideo($event)"
+        />
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-content class="productContent uploading" *ngIf="uploading">
+    <div class="loader">
+      <h2 *ngIf="action == 'update'">
+        Actualizando promo...por favor, espera ​😘​🔥​
+      </h2>
+      <h2 *ngIf="action == 'create'">
+        Subiendo promo...por favor, espera ​😘​🔥​
+      </h2>
+      <mat-spinner
+        class="progressUpdateProfileImg loaderProgress"
+        [mode]="progressProfileImgMode"
+        [diameter]="50"
+        color="primary"
+      ></mat-spinner>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="actions" *ngIf="!uploading">
+    <button mat-button class="matButton" mat-dialog-close *ngIf="!uploading">
+      <h2>Cancelar</h2>
+    </button>
+    <div class="blueButton" *ngIf="uploading">
+      <mat-spinner
+        class="progressUpdateProfileImg"
+        [mode]="progressProfileImgMode"
+        [diameter]="20"
+        color="white"
+      ></mat-spinner>
+    </div>
+    <button
+      mat-flat-button
+      class="matButton blueButton confirm"
+      *ngIf="!uploading"
+      (click)="createService(formPromo, action)"
+    >
+      <h2 *ngIf="action == 'create'">Crear servicio</h2>
+      <h2 *ngIf="action == 'update'">Guardar cambios</h2>
+    </button>
+  </mat-dialog-actions>
+</div>

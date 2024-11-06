@@ -1,0 +1,856 @@
+@use "@angular/material" as mat;
+@import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round&display=swap");
+
+@include mat.core();
+:root {
+  --Manrope: "Manrope";
+  --Script: "Style Script", cursive;
+  --globalTextFamily: var(--Manrope);
+  --globalBg: #f3f3f2;
+  --globalBgBlur: #f3f3f2;
+  --globalField: #e3e3e3;
+  --divider: rgb(134, 134, 134);
+  --color1: #f1e402;
+  --color2: #06d058;
+  --color3: #00bdff;
+  --colorComplement: #406bcc;
+  --colorCatalog: #7700ff;
+  --colorWarn: #06d058;
+  --scroll: linear-gradient(
+    to bottom,
+    var(--color1),
+    var(--color2),
+    var(--color3)
+  );
+  --scroll2: linear-gradient(
+    to top,
+    var(--color1),
+    var(--color2),
+    var(--color3)
+  );
+  --colorButton: linear-gradient(
+    90deg,
+    rgba(0, 189, 255, 1) 0%,
+    rgba(6, 208, 88, 1) 100%
+  );
+  --radialBackground: radial-gradient(var(--globalBg), rgb(26, 25, 25));
+  --linearBackground: linear-gradient(var(--globalBg), rgb(26, 25, 25));
+  --sideNavOpenCover: rgba(0, 0, 0, 0.5);
+
+  --backgroundSidebarDashboard: linear-gradient(
+    to left,
+    var(--colorBlue2),
+    var(--colorBlue1)
+  );
+  --customBackground: var(--globalBg);
+
+  //** Global Sizes **//
+  --gBorderRadius: 0.6em;
+  --gBorderRadiusSelect: 0.35em;
+  --gTextSizeMobileP: 13px;
+  --gTextSizeDesktopP: 14px;
+
+  --gSizePx48: 48px;
+  --gSizePx32: 32px;
+  --gSizePx24: 24px;
+  --gSizePx18: 18px;
+  --gSizePx14: 14px;
+  --gSizePx13: 13px;
+  --gSizePx12: 12px;
+}
+
+$angular-amber-900: mat.define-palette(mat.$orange-palette, A200);
+$angular-pink-500: mat.define-palette(mat.$amber-palette, 800);
+$angular-red: mat.define-palette(mat.$red-palette);
+$angular-gray-light: mat.define-palette(mat.$gray-palette, 300);
+$angular-gray-dark: mat.define-palette(mat.$gray-palette, 900);
+
+$prim: mat.define-palette(mat.$light-blue-palette, 900);
+$primd: mat.define-palette(mat.$light-blue-palette, 200);
+$acc: mat.define-palette(mat.$gray-palette, 900);
+$war: mat.define-palette(mat.$gray-palette, 900);
+
+// define a dark theme
+$myAppThemeDark: mat.define-dark-theme(
+  (
+    color: (
+      primary: $primd,
+      accent: $acc,
+      warn: $angular-red,
+    ),
+  )
+);
+
+/** Light Theme **/
+$myAppTheme: mat.define-light-theme(
+  (
+    color: (
+      primary: $prim,
+      accent: $acc,
+      warn: $angular-red,
+    ),
+  )
+);
+
+.dark-theme {
+  @include mat.all-component-colors($myAppThemeDark);
+  --globalBg: #2b2b2b;
+  --shadow: #000000;
+  --colorIcons: #7a7a7a;
+  --colorText: #d3d3d3;
+  --colorBW: #fff;
+  --divider: rgb(105, 105, 105);
+  --globalField: #272727;
+  --globalBgBlur: #5c5c5c;
+  --radialBackground: radial-gradient(
+    ellipse at center,
+    var(--globalBg) 0%,
+    var(--globalBg2) 100%
+  );
+  --linearBackground: linear-gradient(
+    to bottom,
+    var(--globalBg2),
+    var(--globalBg)
+  );
+  --customBackground: var(--globalBg);
+}
+
+.light-theme {
+  @include mat.all-component-themes($myAppTheme);
+
+  --colorIcons: #696969;
+  --colorText: #1f1f1f;
+  --colorBW: rgb(0, 0, 0);
+  --globalField: #e3e3e3;
+  --divider: rgb(201, 201, 201);
+  --globalBg: #f3f3f3;
+  --globalBgBlur: #ffffff00;
+  --shadow: #8a8a8a6b;
+  --colorBW: rgb(0, 0, 0);
+  --radialBackground: radial-gradient(
+    ellipse at center,
+    var(--globalBg) 0%,
+    var(--globalBg2) 100%
+  );
+  --linearBackground: linear-gradient(
+    to bottom,
+    var(--globalBg2),
+    var(--globalBg)
+  );
+  --customBackground: var(--globalBg);
+}
+
+// Handle buttons appropriately, with respect to line-height
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.matStepperNext,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button {
+  font-size: 13px !important;
+  margin: 0em;
+  min-width: 2em !important;
+  line-height: 30px;
+  padding: 0em 0.6em !important;
+  border-radius: 0.5em !important;
+}
+
+//Deta Picker
+::ng-deep .mat-datepicker-popup,
+::ng-deep .mat-datepicker-content {
+  border-radius: 0.5em !important;
+}
+::ng-deep .mat-icon {
+  font-size: 24px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--colorIcons);
+  font-family: "Material Icons Outlined";
+  font-variation-settings: "FILL" 0, "wght" 100, "GRAD" 0, "opsz" 48 !important;
+  font-weight: 100 !important;
+  margin-right: 0px !important;
+}
+::ng-deep .mat-mdc-button .mat-unthemed {
+  width: max-content !important;
+  max-width: max-content !important;
+  min-width: max-content !important;
+  border-radius: 0.5em !important;
+  display: flex !important;
+  justify-content: center !important;
+  padding: 0 0.6em !important;
+  margin-right: 0px !important;
+  align-items: center !important;
+}
+:ng-deep .mat-mdc-button > .mat-icon {
+  margin-left: 0 !important;
+  margin-right: 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  vertical-align: middle;
+  font-size: 24px !important;
+  height: max-content !important;
+}
+.material-icons {
+  font-size: 20px;
+  color: var(--colorIcons);
+  font-family: "Material Icons Outlined";
+  font-variation-settings: "FILL" 0, "wght" 100, "GRAD" 0, "opsz" 48;
+  font-weight: 100 !important;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500 !important;
+    color: var(--colorText);
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+  }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+label,
+span,
+h6 {
+  color: var(--colorText);
+  //line-height: 21px !important;
+  vertical-align: middle !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  font-family: var(--globalTextFamily) !important;
+}
+h1 {
+  font-size: 15px !important;
+}
+h2,
+span {
+  font-size: 14px !important;
+}
+h3,
+h4 {
+  font-size: 14px !important;
+}
+p {
+  font-size: 13px !important;
+  line-height: 1em !important;
+}
+
+::ng-deep mat-card-title {
+  color: var(--colorText) !important;
+  align-items: center;
+  font-weight: 500 !important;
+}
+::ng-deep mat-card-subtitle {
+  color: var(--colorText) !important;
+  align-items: center;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  //-webkit-appearance: none;
+  margin: 0;
+}
+
+::ng-deep .mat-divider {
+  margin: 1.5em auto !important;
+  border-top-color: var(--divider) !important;
+}
+
+.hideObject {
+  display: none;
+}
+
+/* Buttons */
+::ng-deep .mat-mdc-button {
+  border-radius: 0.5em !important;
+  padding: 0em 0.6em !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .mat-mdc-paginator {
+  background: transparent !important;
+}
+
+::ng-deep .mat-mdc-select span {
+  font-size: 13px !important;
+  /*TODO(mdc-migration): The following rule targets internal classes of option that may no longer apply for the MDC version.*/
+  .mat-option-text {
+    font-size: 13px !important;
+  }
+}
+/*TODO(mdc-migration): The following rule targets internal classes of select that may no longer apply for the MDC version.*/
+::ng-deep .mat-select-placeholder {
+  font-weight: 400 !important;
+}
+
+::ng-deep .mat-mdc-select-panel {
+  border-radius: 0.5em !important;
+  background: var(--globalBg) !important;
+  box-sizing: content-box;
+  .mat-mdc-option {
+    box-sizing: content-box;
+    padding: 0 0.75em !important;
+  }
+}
+.mat-mdc-select-panel .mat-mdc-option {
+  box-sizing: content-box;
+  padding: 0 0.75em !important;
+  font-family: var(--globalTextFamily);
+}
+
+.matOutlined {
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 48 !important;
+}
+
+.container {
+  padding: 1.75em 1.75em 0em 1.75em;
+}
+
+p {
+  font-size: 13px;
+}
+
+.secHead {
+  width: 85%;
+}
+
+.mat-mdc-card-subtitle {
+  font-size: 20px !important;
+  display: flex;
+  font-weight: 500 !important;
+  mat-icon {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-right: 0em !important;
+  }
+}
+//_________________________Accordion
+::ng-deep mat-accordion {
+  margin: 0.25em 0.25em !important;
+  background: transparent !important;
+  border-radius: 0.5em !important;
+  height: auto !important;
+}
+::ng-deep mat-panel-title {
+  padding: 0.25em 0em !important;
+}
+
+::ng-deep .mat-expansion-panel {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px var(--shadow) !important;
+  height: auto !important;
+}
+
+::ng-deep .mat-expansion-panel-header {
+  max-width: 100%;
+  background: transparent !important;
+  padding: 0em 0.25em 0.15em 0em !important;
+  height: auto !important;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  width: calc(100% - 1em) !important;
+  max-width: calc(100% - 1em) !important;
+  box-sizing: border-box;
+  background: transparent !important;
+  padding: 0em 0.5em 1em 0.5em !important;
+  margin: 0 !important;
+}
+@media (max-width: 760px) {
+  ::ng-deep .mat-expansion-panel-body {
+    width: calc(100% - 0.25em) !important;
+    max-width: calc(100% - 0.25em) !important;
+    box-sizing: border-box;
+    background: transparent !important;
+    padding: 0em 0.1em 1em 0.1em !important;
+    margin: 0 !important;
+  }
+}
+
+//:::::::::::::::::::::::::
+::ng-deep .mat-mdc-menu-panel {
+  min-width: 180px !important;
+  max-width: max-content !important;
+  width: max-content !important;
+  border-radius: 0.5em !important;
+  padding: 0.5em !important;
+  box-sizing: border-box !important;
+  background: var(--globalBg) !important;
+  box-shadow: 0px 0px 12px var(--shadow) !important;
+  backdrop-filter: blur(15px) !important;
+  .mat-mdc-menu-item {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 100% !important;
+    padding: 0;
+    margin: 0 auto !important;
+    padding-right: 16px;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    color: inherit;
+    font-size: inherit;
+    background: none;
+    text-decoration: none;
+    margin: 0;
+    min-height: 48px;
+    border-radius: 0.5em !important;
+  }
+  .mat-mdc-menu-content {
+    border-radius: 0.5em !important;
+    padding: 0em !important;
+    background-color: var(--globalBgBlur2) !important;
+    button {
+      display: flex !important ;
+      align-items: center;
+      gap: 0.45em !important;
+      border-radius: 0.5em;
+      padding: 0 0.5em !important;
+    }
+  }
+}
+
+::ng-deep .mat-mdc-tooltip {
+  /* your own custom styles here */
+  /* e.g. */
+  z-index: 9999;
+  font-size: 14px !important;
+  padding-right: 1.5em !important;
+  padding-left: 1.5em !important;
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
+  white-space: pre-wrap;
+  border-radius: 0.5em !important;
+  font-family: var(--globalTextFamily) !important;
+}
+
+/***:::::::::::::::::::::::::::: SIDE NAV:::::::::: ***/
+::ng-deep mat-drawer-container {
+  .mat-drawer-container-has-open {
+    background: var(--sideNavOpenCover) !important;
+  }
+  .mat-drawer-shown {
+    background: var(--sideNavOpenCover) !important;
+  }
+}
+.gradientIcon {
+  background: -webkit-linear-gradient(
+    left,
+    var(--colorBlue1),
+    var(--colorBlue2)
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.mat-icon {
+  font-family: "Material Icons Outlined";
+  font-variation-settings: "FILL" 1, "wght" 100, "GRAD" 0, "opsz" 48 !important;
+}
+
+@media (max-width: 760px) {
+  h1 {
+    font-size: 13px !important;
+  }
+  h2,
+  span {
+    font-size: 12px !important;
+  }
+  h3,
+  h4 {
+    font-size: 12px !important;
+  }
+
+  p {
+    font-size: 11px !important;
+    line-height: 14px !important;
+  }
+
+  // Handle buttons appropriately, with respect to line-height
+  .mat-mdc-button,
+  .mat-mdc-raised-button,
+  .matStepperNext,
+  .mat-mdc-outlined-button,
+  .mat-mdc-unelevated-button {
+    font-size: 12px !important;
+  }
+}
+
+/******************************************* Material v16 update ****************************************************/
+/* Form fiel */
+:ng-deep .mat-mdc-text-field {
+  min-height: 4em !important;
+  align-items: center !important;
+}
+:ng-deep .mat-mdc-text-field--filled {
+  min-height: 4em !important;
+  align-items: center !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  padding-top: 0.5em !important;
+  border-radius: 0.85em !important;
+  background: var(--globalField) !important;
+  font-family: var(--globalTextFamily) !important;
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+  }
+}
+
+::ng-deep
+  .mat-mdc-text-field-wrapper
+  .mat-mdc-form-field-infix
+  .mat-mdc-floating-label {
+  font-size: 16px !important;
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-line-ripple::before {
+  border-bottom: none;
+}
+::ng-depp .mat-mdc-form-field-focus-overlay {
+  background-color: transparent !important;
+}
+::ng-deep .mat-mdc-form-field-hint {
+  font-size: 12px !important;
+  font-family: var(--globalTextFamily) !important;
+}
+
+.mdc-text-field__input {
+  margin-top: 0.85em !important;
+  font-family: var(--globalTextFamily) !important;
+}
+.mat-mdc-form-field-error {
+  font-family: var(--globalTextFamily) !important;
+}
+
+/******************************************************************************************/
+/* Text area */
+textarea {
+  margin-top: 0.5em !important;
+}
+
+/* Select 
+::ng-deep .mat-mdc-select-value-text {
+  font-family: var(--globalTextFamily) !important;
+}
+::ng-deep .mat-mdc-option.mdc-list-item {
+  font-family: var(--globalTextFamily) !important;
+}*/
+::ng-deep .mat-mdc-select {
+  width: calc(100% - 0.6em);
+  margin: 0 auto !important;
+  margin-top: 0em !important;
+  background: var(--globalField) !important;
+  box-sizing: border-box;
+  padding: 1em !important;
+  min-height: 4em !important;
+  border-radius: 0.5em;
+}
+
+/* Snackbar */
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background: var(--globalField) !important;
+  border-radius: 0.5em;
+  box-shadow: 0 0 8px var(--shadow) !important;
+  font-family: var(--globalTextFamily) !important;
+}
+::ng-deep .mat-mdc-snack-bar-container .mdc-snackbar__label {
+  color: var(--colorText) !important;
+}
+
+/* Chackbox */
+::ng-deep .mat-mdc-checkbox .mdc-form-field {
+  gap: 1em !important;
+  color: var(--mdc-theme-text-primary-on-background, white);
+}
+/* Table */
+::ng-deep table {
+  font-family: var(--globalTextFamily) !important;
+  border-radius: 0.5em;
+}
+/* Chip */
+::ng-deep .mdc-evolution-chip-set .mdc-evolution-chip {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  padding: 0.15em 1em !important;
+}
+::ng-deep .mat-mdc-chip {
+  .mat-icon {
+    color: var(--colorText) !important;
+  }
+}
+::ng-deep .mat-mdc-chip-set .mdc-evolution-chip-set__chips {
+  min-width: 100%;
+  gap: 0.2em !important;
+}
+/* Paginator  */
+::ng-deep .mat-mdc-paginator-container {
+  width: 100% !important;
+  border-radius: 0 0 0.75em 0.75em;
+  background: transparent !important;
+  font-family: var(--globalTextFamily) !important;
+}
+::ng-deep .mdc-button__label {
+  font-size: 13px;
+  letter-spacing: 0px;
+}
+
+@media (max-width: 760px) {
+  ::ng-deep .mat-mdc-tab-header {
+    width: 100% !important;
+  }
+  ::ng-deep .mat-mdc-tab-body-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  ::ng-deep
+    .mat-mdc-tab-header-pagination-controls-enabled
+    .mat-mdc-tab-header-pagination {
+    display: none !important;
+  }
+}
+/** Material button style */
+.matButton {
+  color: var(--colorBW);
+  border-radius: 0.5em;
+  padding: 0.15em 1.65em;
+}
+.blueButton {
+  background-color: var(--colorButton) !important;
+  background: var(--colorButton) !important;
+  border-radius: 0.5em !important;
+  padding: 0.5em 1.5em !important;
+  color: white !important;
+  ::ng-deep .mdc-button__label {
+    color: white !important;
+  }
+}
+
+/*** DIALOG */
+::ng-deep .mdc-dialog .mdc-dialog__content {
+  padding: 0.5em !important;
+}
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  width: 100% !important;
+  min-width: 100% !important;
+  background-color: var(--mainBackground) !important;
+  box-shadow: 0 0 46px var(--shadow) !important;
+  border-radius: 0.5em !important;
+  padding: 0em !important;
+  overflow: hidden;
+}
+::ng-deep .mat-mdc-dialog-container,
+.mat-mdc-dialog-container .mdc-dialog__container,
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  max-height: inherit;
+  min-height: inherit;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  padding: 0em !important;
+}
+.mat-badge-hidden .mat-badge-content:empty {
+  display: inline-block;
+}
+.mat-sort-header-content {
+  text-align: center;
+  display: flex;
+  font-size: 13px !important;
+  align-items: center;
+  color: var(--colorIcons) !important;
+  font-weight: 500 !important;
+}
+::ng-deep .mat-mdc-form-field-flex {
+  display: inline-flex;
+  align-items: baseline;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100% !important;
+  padding-right: 0.85em !important;
+}
+/** 
+*
+*
+*
+* Call to action 
+*
+*
+*
+**/
+.ctaCont {
+  width: 94vw;
+  height: 90vh;
+  position: relative;
+  margin: 10em auto !important;
+  border-radius: 0.5em;
+  box-sizing: border-box;
+  box-shadow: 0 0 16px var(--shadow5) !important;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+  .main {
+    width: 94%;
+    height: 96%;
+    margin: 0 auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .b {
+      display: flex;
+      align-items: self-end;
+      justify-content: flex-end;
+      flex-direction: column;
+      width: 75%;
+      .headerSubs {
+        text-transform: uppercase !important;
+        font-size: 16px !important;
+        text-align: center !important;
+        font-family: var(--Rajdhani) !important;
+        font-weight: 700 !important;
+        color: var(--colorComplement) !important;
+        margin-bottom: 1em !important;
+      }
+      h2 {
+        width: 50%;
+        font-weight: 700 !important;
+        font-size: 16px !important;
+        text-align: end !important;
+        margin-bottom: 1em !important;
+        font-family: var(--Dosis) !important;
+        line-height: 1.15em !important;
+      }
+      h3 {
+        width: 80%;
+        font-weight: 700 !important;
+        font-size: 28px !important;
+        font-family: var(--Dosis) !important;
+        text-align: end !important;
+        margin-bottom: 1em !important;
+        span {
+          font-weight: 700 !important;
+          font-size: 28px !important;
+          color: var(--colorComplement) !important;
+        }
+      }
+      button {
+        color: white !important;
+        border-radius: 0.5em !important;
+      }
+    }
+  }
+}
+@media (max-width: 760px) {
+  .ctaCont {
+    width: 94%;
+    height: 100vh;
+    margin-top: 5em !important;
+    margin-bottom: 0em !important;
+    img {
+      width: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      border-radius: 0.5em;
+    }
+    .main {
+      align-items: start;
+      width: 86%;
+      .b {
+        margin-top: 5em !important;
+        .headerSubs {
+          text-transform: uppercase !important;
+          font-size: 12px !important;
+          text-align: center !important;
+          font-family: var(--Rajdhani) !important;
+          font-weight: 700 !important;
+          color: var(--colorComplement) !important;
+          margin-bottom: 1em !important;
+        }
+        h2 {
+          width: 60% !important;
+          font-size: 12px !important;
+          font-weight: 500 !important;
+          text-align: center;
+        }
+        h3 {
+          font-size: 16px !important;
+          line-height: 1em !important;
+          span {
+            font-weight: 700 !important;
+            font-size: 16px !important;
+            color: var(--colorComplement) !important;
+          }
+        }
+      }
+    }
+  }
+}
+.cdk-global-overlay-wrapper {
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  background: #00000079;
+}
+
+@media (max-width: 760px) {
+  /* Form fiel */
+  :ng-deep .mat-mdc-text-field {
+    min-height: 2em !important;
+  }
+  :ng-deep .mat-mdc-text-field--filled {
+    min-height: 2em !important;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    padding-top: 0.5em !important;
+    border-radius: 0.85em !important;
+    .mat-mdc-form-field-focus-overlay {
+      background-color: transparent !important;
+    }
+  }
+  ::ng-deep
+    .mat-mdc-text-field-wrapper
+    .mat-mdc-form-field-infix
+    .mat-mdc-floating-label {
+    font-size: 13px !important;
+  }
+  ::ng-deep .mat-mdc-form-field-hint {
+    font-size: 11px !important;
+    font-family: var(--globalTextFamily) !important;
+  }
+}

@@ -1,0 +1,607 @@
+<div class="infoCont">
+  <h2>Información</h2>
+  <!-- Business form -->
+  <form [formGroup]="formBusiness" class="brandForm">
+    <!-- Name -->
+    <div class="item">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre de la marca</mat-label>
+        <input type="text" matInput formControlName="name" />
+      </mat-form-field>
+    </div>
+    <!-- Desc -->
+    <div class="item">
+      <mat-form-field appearance="fill">
+        <mat-label>Descripción para mis clientes</mat-label>
+        <textarea
+          #slogan
+          class="matFieldArea"
+          matInput
+          formControlName="desc"
+          type="text"
+          maxlength="500"
+          [value]="mBussines.desc"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Schedule -->
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Horarios</mat-panel-title>
+          <mat-panel-description>
+            .
+            <mat-icon>calendar_month</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="scheduleCont">
+          <!-- Monday -->
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon class="panelIC">event</mat-icon
+                  >Lunes</mat-panel-title
+                >
+              </mat-expansion-panel-header>
+
+              <!-- Time container -->
+              <div class="day">
+                <div class="innerDay">
+                  <h2>{{ mondayInit }}</h2>
+                  <ngx-mat-timepicker
+                    #mInit
+                    (closed)="changeMInit(mInit.defaultTime, 'monday', 'init')"
+                    [defaultTime]="'12:00 AM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="mInit">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+                <mat-icon>arrow_forward</mat-icon>
+                <div class="innerDay">
+                  <h2>{{ mondayEnd }}</h2>
+                  <ngx-mat-timepicker
+                    #mEnd
+                    id="mEnd"
+                    (closed)="changeMInit(mEnd.defaultTime, 'monday', 'end')"
+                    [defaultTime]="'11:59 PM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="mEnd">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+                <!-- <mat-form-field appearance="fill" dense>
+                  <mat-label>Inicio</mat-label>
+                  <div class="timerContainer">
+                    <input
+                      class="sA"
+                      #imInit
+                      type="text"
+                      matInput
+                      [ngxMatTimepicker]="mInit"
+                      (ngModelChange)="changeMInit(imInit)"
+                      [value]="'0'"
+                      placeholder=""
+                      [format]="24"
+                    />
+                    <ngx-mat-timepicker
+                      class="sB"
+                      #mInit
+                      id="mInit"
+                      [defaultTime]="'0'"
+                    ></ngx-mat-timepicker>
+                  </div>
+                </mat-form-field> -->
+                <!-- <mat-form-field appearance="fill" dense>
+                  <mat-label>Cierre</mat-label>
+                  <div class="timerContainer">
+                    <input
+                      class="sA"
+                      #imEnd
+                      type="text"
+                      matInput
+                      [ngxMatTimepicker]="mEnd"
+                      [value]="'0'"
+                      placeholder=""
+                      [format]="24"
+                    />
+                    <ngx-mat-timepicker
+                      class="sB"
+                      #mEnd
+                      id="mEnd"
+                      [defaultTime]="'0'"
+                    ></ngx-mat-timepicker>
+                  </div>
+                </mat-form-field> -->
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!-- tuesday -->
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title
+                  ><mat-icon class="panelIC">event</mat-icon
+                  >Martes</mat-panel-title
+                >
+              </mat-expansion-panel-header>
+
+              <!-- Time container -->
+              <div class="day">
+                <div class="innerDay">
+                  <h2>{{ tuesdayInit }}</h2>
+                  <ngx-mat-timepicker
+                    #tInit
+                    (closed)="changeMInit(tInit.defaultTime, 'tuesday', 'init')"
+                    [defaultTime]="'12:00 AM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="tInit">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+                <mat-icon>arrow_forward</mat-icon>
+                <div class="innerDay">
+                  <h2>{{ tuesdayEnd }}</h2>
+                  <ngx-mat-timepicker
+                    #tEnd
+                    (closed)="changeMInit(tEnd.defaultTime, 'tuesday', 'end')"
+                    [defaultTime]="'11:59 PM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="tEnd">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!-- wednesday -->
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title
+                  ><mat-icon class="panelIC">event</mat-icon
+                  >Miercoles</mat-panel-title
+                >
+              </mat-expansion-panel-header>
+              <!-- Time container -->
+              <div class="day">
+                <div class="innerDay">
+                  <h2>{{ wednesdayInit }}</h2>
+                  <ngx-mat-timepicker
+                    #wInit
+                    (closed)="
+                      changeMInit(wInit.defaultTime, 'wednesday', 'init')
+                    "
+                    [defaultTime]="'12:00 AM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="wInit">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+                <mat-icon>arrow_forward</mat-icon>
+                <div class="innerDay">
+                  <h2>{{ wednesdayEnd }}</h2>
+                  <ngx-mat-timepicker
+                    #wEnd
+                    (closed)="changeMInit(wEnd.defaultTime, 'wednesday', 'end')"
+                    [defaultTime]="'11:59 PM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="wEnd">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!-- thursday -->
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title
+                  ><mat-icon class="panelIC">event</mat-icon
+                  >Jueves</mat-panel-title
+                >
+              </mat-expansion-panel-header>
+
+              <!-- Time container -->
+              <div class="day">
+                <div class="innerDay">
+                  <h2>{{ thursdayInit }}</h2>
+                  <ngx-mat-timepicker
+                    #thInit
+                    (closed)="
+                      changeMInit(thInit.defaultTime, 'thursday', 'init')
+                    "
+                    [defaultTime]="'12:00 AM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="thInit">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+                <mat-icon>arrow_forward</mat-icon>
+                <div class="innerDay">
+                  <h2>{{ thursdayEnd }}</h2>
+                  <ngx-mat-timepicker
+                    #thEnd
+                    (closed)="changeMInit(thEnd.defaultTime, 'thursday', 'end')"
+                    [defaultTime]="'11:59 PM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="thEnd">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!-- friday -->
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title
+                  ><mat-icon class="panelIC">event</mat-icon
+                  >Viernes</mat-panel-title
+                >
+              </mat-expansion-panel-header>
+
+              <!-- Time container -->
+              <div class="day">
+                <div class="innerDay">
+                  <h2>{{ fridayInit }}</h2>
+                  <ngx-mat-timepicker
+                    #fInit
+                    (closed)="changeMInit(fInit.defaultTime, 'friday', 'init')"
+                    [defaultTime]="'12:00 AM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="fInit">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+                <mat-icon>arrow_forward</mat-icon>
+                <div class="innerDay">
+                  <h2>{{ fridayEnd }}</h2>
+                  <ngx-mat-timepicker
+                    #fEnd
+                    (closed)="changeMInit(fEnd.defaultTime, 'friday', 'end')"
+                    [defaultTime]="'11:59 PM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="fEnd">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!-- saturday -->
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title
+                  ><mat-icon class="panelIC">event</mat-icon
+                  >Sábado</mat-panel-title
+                >
+              </mat-expansion-panel-header>
+
+              <!-- Time container -->
+              <div class="day">
+                <div class="innerDay">
+                  <h2>{{ saturdayInit }}</h2>
+                  <ngx-mat-timepicker
+                    #sInit
+                    (closed)="
+                      changeMInit(sInit.defaultTime, 'saturday', 'init')
+                    "
+                    [defaultTime]="'12:00 AM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="sInit">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+                <mat-icon>arrow_forward</mat-icon>
+                <div class="innerDay">
+                  <h2>{{ saturdayEnd }}</h2>
+                  <ngx-mat-timepicker
+                    #sEnd
+                    (closed)="changeMInit(sEnd.defaultTime, 'saturday', 'end')"
+                    [defaultTime]="'11:59 PM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="sEnd">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          <!-- sunday -->
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title
+                  ><mat-icon class="panelIC">event</mat-icon
+                  >Domingo</mat-panel-title
+                >
+              </mat-expansion-panel-header>
+
+              <!-- Time container -->
+              <div class="day">
+                <div class="innerDay">
+                  <h2>{{ sundayInit }}</h2>
+                  <ngx-mat-timepicker
+                    #suInit
+                    (closed)="changeMInit(suInit.defaultTime, 'sunday', 'init')"
+                    [defaultTime]="'12:00 AM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="suInit">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+                <mat-icon>arrow_forward</mat-icon>
+                <div class="innerDay">
+                  <h2>{{ sundayEnd }}</h2>
+                  <ngx-mat-timepicker
+                    #suEnd
+                    (closed)="changeMInit(suEnd.defaultTime, 'sunday', 'end')"
+                    [defaultTime]="'11:59 PM'"
+                  ></ngx-mat-timepicker>
+                  <button mat-button [ngxMatTimepicker]="suEnd">
+                    <mat-icon>calendar_today</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-divider></mat-divider>
+
+    <!-- Dynamic Address -->
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Direcciónes</mat-panel-title>
+          <mat-panel-description>
+            Sucursales
+            <mat-icon>storefront</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="addressCont">
+          <div class="subcatAddCont" (click)="addAddress('')">
+            <h2>Agregar dirección</h2>
+            <div class="addCont">
+              <mat-icon>add</mat-icon>
+            </div>
+          </div>
+        </div>
+        <!-- Dynamic Form address -->
+        <div class="form-grid" formArrayName="address">
+          <div
+            class="form-field"
+            *ngFor="
+              let skill of getCtrl('address', formBusiness).controls;
+              index as formChild;
+              let indexOfelement = index
+            "
+          >
+            <div class="levelContainerChild mt1" [formGroupName]="formChild">
+              <!-- Address Field -->
+              <div class="levelParamContainer">
+                <!-- fields -->
+                <div class="fields">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Dirección</mat-label>
+                    <input
+                      matInput
+                      placeholder="Dirección..."
+                      type="text"
+                      formControlName="a"
+                    />
+                  </mat-form-field>
+                </div>
+                <!-- delete -->
+                <div class="delete">
+                  <!-- Delete Action -->
+                  <mat-icon
+                    (click)="deleteAddress(skill, $event, indexOfelement)"
+                    >delete</mat-icon
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-divider></mat-divider>
+
+    <!-- dynamic phones -->
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Teléfonos</mat-panel-title>
+          <mat-panel-description>
+            Contactos
+            <mat-icon>call</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="addressCont">
+          <div class="subcatAddCont" (click)="addPhone('')">
+            <h2>Agregar teléfono</h2>
+            <div class="addCont">
+              <mat-icon>add</mat-icon>
+            </div>
+          </div>
+        </div>
+        <!-- Dynamic Form address -->
+        <div class="form-grid" formArrayName="phones">
+          <div
+            class="form-field"
+            *ngFor="
+              let skill of getCtrl('phones', formBusiness).controls;
+              index as formChild;
+              let indexOfelement = index
+            "
+          >
+            <div class="levelContainerChild mt1" [formGroupName]="formChild">
+              <!-- Address Field -->
+              <div class="levelParamContainer">
+                <!-- fields -->
+                <div class="fields">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Teléfono</mat-label>
+                    <input
+                      matInput
+                      placeholder="Teléfono..."
+                      type="text"
+                      formControlName="phone"
+                    />
+                  </mat-form-field>
+                </div>
+                <!-- delete -->
+                <div class="delete">
+                  <!-- Delete Action -->
+                  <mat-icon (click)="deletePhone(skill, $event, indexOfelement)"
+                    >delete</mat-icon
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-divider></mat-divider>
+
+    <!-- brands -->
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Marcas</mat-panel-title>
+          <mat-panel-description>
+            Proveedores
+            <mat-icon>groups</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="addressCont">
+          <div class="subcatAddCont" (click)="addBrand('')">
+            <h2>Agregar marca</h2>
+            <div class="addCont">
+              <mat-icon>add</mat-icon>
+            </div>
+          </div>
+        </div>
+        <!-- Dynamic Form brands -->
+        <div class="form-grid" formArrayName="brands">
+          <div
+            class="form-field"
+            *ngFor="
+              let skill of getCtrl('brands', formBusiness).controls;
+              index as formChild;
+              let indexOfelement = index
+            "
+          >
+            <div class="levelContainerChild mt1" [formGroupName]="formChild">
+              <!-- Address Field -->
+              <div class="levelParamContainer">
+                <!-- fields -->
+                <div class="fields">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Marca</mat-label>
+                    <input
+                      matInput
+                      placeholder="Nombre de la marca..."
+                      type="text"
+                      formControlName="brand"
+                    />
+                  </mat-form-field>
+                </div>
+                <!-- delete -->
+                <div class="delete">
+                  <!-- Delete Action -->
+                  <mat-icon (click)="deleteBrand(skill, $event, indexOfelement)"
+                    >delete</mat-icon
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-divider></mat-divider>
+
+    <!-- Services Types -->
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Servicios</mat-panel-title>
+          <mat-panel-description>
+            Tipos de servicios
+            <mat-icon>self_improvement</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <!-- Chips tags -->
+        <mat-form-field class="chipListSection" appearance="fill">
+          <mat-chip-grid #chipListTag aria-label="Tags selection">
+            <mat-chip-option
+              *ngFor="let st of sTyps"
+              (removed)="removesTyp(st)"
+            >
+              {{ st }}
+              <button matChipRemove>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-chip-option>
+            <input
+              placeholder="Agrega los tipos de servicios..."
+              [matChipInputFor]="chipListTag"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="addTags($event)"
+            />
+          </mat-chip-grid>
+        </mat-form-field>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-divider></mat-divider>
+  </form>
+
+  <button
+    mat-flat-button
+    class="matButton blueButton confirm"
+    *ngIf="!uploading"
+    (click)="initSave(formBusiness)"
+  >
+    <h2>Guardar</h2>
+  </button>
+
+  <mat-divider></mat-divider>
+</div>
+
+<!--            
+<mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Direcciónes</mat-panel-title>
+        <mat-panel-description>
+          Sucursales
+          <mat-icon>storefront</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      
+    </mat-expansion-panel>
+  </mat-accordion> -->

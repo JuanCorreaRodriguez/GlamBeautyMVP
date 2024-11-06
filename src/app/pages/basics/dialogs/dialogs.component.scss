@@ -1,0 +1,28 @@
+.containerDialog {
+  margin: 0;
+  padding: 0.5em;
+  overflow: hidden;
+  background: var(--globalBg) !important;
+}
+.customTitleDialog {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+.customSubtitleDialog {
+  width: 100%;
+  font-weight: 500 !important;
+  min-width: 100%;
+  max-width: 100%;
+  font-size: 14px !important;
+  color: var(--colorP) !important;
+}
+.menuActions {
+  margin-top: 0em !important;
+  button {
+    padding: 0em 1.5em !important;
+  }
+}

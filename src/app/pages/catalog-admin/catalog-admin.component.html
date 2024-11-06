@@ -1,0 +1,48 @@
+<div class="mainCatalog">
+  <mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="over">
+      <h2 class="title">Acciónes</h2>
+
+      <mat-divider></mat-divider>
+
+      <div class="item">
+        <button (click)="actionClick('admin-glam/admin')" mat-raised-button>
+          <mat-icon>store</mat-icon>
+          <h2>Administración</h2>
+        </button>
+      </div>
+
+      <div class="item">
+        <button (click)="actionClick('admin-glam')" mat-raised-button>
+          <mat-icon>inventory_2</mat-icon>
+          <h2>Productos</h2>
+        </button>
+      </div>
+      <div class="item">
+        <button (click)="actionClick('admin-glam/services')" mat-raised-button>
+          <mat-icon>spa</mat-icon>
+          <h2>Servicios</h2>
+        </button>
+      </div>
+
+      <div class="item">
+        <button (click)="actionClick('admin-glam/promos')" mat-raised-button>
+          <mat-icon>percent</mat-icon>
+          <h2>Promos</h2>
+        </button>
+      </div>
+    </mat-drawer>
+
+    <div class="sidenavContent">
+      <button
+        class="matButton sbtn"
+        type="button"
+        mat-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <router-outlet class="outlet"></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div>

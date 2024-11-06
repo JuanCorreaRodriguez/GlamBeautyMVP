@@ -1,0 +1,311 @@
+.mainCreateProduct {
+  background-color: var(--globalBg) !important;
+  box-sizing: border-box;
+  height: 100%;
+}
+.productContent {
+  width: 100%;
+  min-height: calc(100% - 52px);
+  height: calc(100% - 52px);
+  .title {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    span {
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      color: var(--colorIcons) !important;
+    }
+  }
+}
+.formProd {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.price-disc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  max-width: 100%;
+  .itempd1 {
+    width: 50%;
+    flex: 1 0 50%;
+  }
+  .itempd2 {
+    width: calc(50% - 1em);
+    flex: 1 0 calc(50% - 1em);
+  }
+}
+.mat-mdc-form-field {
+  width: 100%;
+}
+.matFieldArea {
+  min-height: 6em !important;
+}
+.imageContainer {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 100%;
+  .imageHeader {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 100%;
+    h2 {
+      width: 85%;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      flex: 1 0 85%;
+    }
+    .containerUpdateImage {
+      flex: 0 1 15%;
+      width: 15%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0em;
+      border-radius: 50%;
+      .mat-icon {
+        width: max-content;
+        font-size: 20px;
+      }
+
+      .progressUpdateProfileImg {
+        width: max-content;
+        text-align: center;
+        vertical-align: middle;
+        margin: auto;
+      }
+    }
+  }
+}
+.progressUpdateProfileImg {
+  width: max-content;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+}
+.subcategoriesCont {
+  .subcatAddCont {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    h2 {
+      width: 80%;
+      flex: 1 0 80%;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+    }
+    .addCont {
+      width: 20%;
+      flex: 0 1 20%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .mat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px !important;
+      }
+    }
+  }
+}
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5em;
+}
+.confirm {
+  h2 {
+    color: white !important;
+    font-weight: 600 !important;
+  }
+}
+.imgCatCont {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1.5em auto;
+  gap: 0.15em;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  .innerImg {
+    width: auto;
+    min-width: 20%;
+    max-width: 33%;
+    margin: 0 auto;
+    position: relative;
+    .imgCatClass {
+      border-radius: 0.5em !important;
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover;
+    }
+    .removeImg {
+      position: absolute;
+      top: 0.15em;
+      right: 0.15em;
+      overflow-x: 1;
+      height: 24px;
+      width: 24px;
+      border-radius: 0.5em !important;
+      background: #0000007a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .mat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px !important;
+        color: white !important;
+      }
+    }
+  }
+  .innerVid {
+    width: auto;
+    min-width: 45%;
+    max-width: calc(50% - 0.1em);
+    max-height: 10em;
+    margin: 0 auto;
+    position: relative;
+    .vidCatClass {
+      border-radius: 0.5em !important;
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover;
+      position: relative;
+      .mat-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 28px !important;
+        width: 28px !important;
+        height: 28px !important;
+        background: var(--scroll);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+    .removeVid {
+      position: absolute;
+      top: 0.15em;
+      right: 0.15em;
+      overflow-x: 1;
+      height: 24px;
+      width: 24px;
+      border-radius: 0.5em !important;
+      background: #0000007a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .mat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px !important;
+        color: white !important;
+      }
+    }
+  }
+}
+.levelContainerChild,
+.formChild {
+  min-height: 3.5em;
+  width: calc(100% - 1em);
+  max-width: calc(100% - 1em);
+  margin: 0.05em auto;
+  padding: 0.35em !important;
+  border-radius: 0.5em !important;
+  background-color: var(--blurBackgroundBox);
+}
+.levelParamContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  box-sizing: border-box;
+  .fields {
+    flex: 1 0 auto;
+    /*TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version.*/
+    .mat-form-field-infix {
+      width: calc(100% - 30px) !important;
+      max-width: calc(100% - 30px) !important;
+    }
+    .mat-mdc-form-field {
+      width: calc(100% - 30px) !important;
+      max-width: calc(100% - 30px) !important;
+    }
+  }
+  .delete {
+    flex: 0 1 auto;
+    .mat-icon {
+      color: crimson;
+      width: 30px !important;
+      transition: all 0.5em ease-in-out;
+    }
+  }
+}
+.subcategories {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  flex-wrap: wrap;
+}
+.subcategoriesFlex {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+.cbox {
+  border-radius: 0.5em !important;
+  padding: 0.25em !important;
+  background-color: var(--globalField) !important;
+}
+
+:host ::ng-deep .mdc-checkbox {
+  flex: 0 0 6px !important;
+}
+
+.uploading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  .loader {
+    width: 50%;
+    h2 {
+      font-size: 16px !important;
+      font-weight: 600 !important;
+      text-align: center !important;
+    }
+    .loaderProgress {
+      margin-top: 2em;
+    }
+  }
+}
+.discount {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  .a {
+    flex: 1 0 50%;
+    width: 50%;
+  }
+  .b {
+    flex: 0 1 50%;
+    width: 50%;
+  }
+}

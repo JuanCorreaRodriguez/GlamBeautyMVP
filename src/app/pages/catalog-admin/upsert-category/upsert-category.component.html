@@ -1,0 +1,148 @@
+<div class="mainCreateCategory">
+  <mat-dialog-content class="categoryContent" *ngIf="!uploading">
+    <h2 class="title">Crear-actualizar categoria</h2>
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="formCategory" class="searchForm">
+      <!-- Cat name -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre de la categoria</mat-label>
+          <input type="text" matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+      <!-- Cat desc -->
+      <div class="item">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre de la categoria</mat-label>
+          <textarea
+            #slogan
+            class="matFieldArea"
+            matInput
+            formControlName="desc"
+            type="text"
+            maxlength="500"
+            [value]="model.desc"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="imageContainer">
+        <div class="imageHeader">
+          <h2>Imagen</h2>
+          <div class="containerUpdateImage" (click)="loadImageCategory()">
+            <mat-icon
+              *ngIf="!uploading"
+              class="updateimage"
+              id="updateImageProfile"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+        <div class="imgCatCont">
+          <img
+            *ngIf="model.image != ''"
+            loading="lazy"
+            src="{{ model.image }}"
+            alt="UserProfile"
+            class="imgCatClass"
+          />
+        </div>
+        <input
+          type="file"
+          [hidden]="true"
+          id="imgProfileUpdate"
+          accept=".png, .jpg, .jpeg"
+          (change)="updateCardImage($event)"
+        />
+      </div>
+
+      <mat-divider></mat-divider>
+      <div class="subcategoriesCont">
+        <div class="subcatAddCont">
+          <h2>Subcategorias</h2>
+          <div class="addCont" (click)="addSubCat('')">
+            <mat-icon>add</mat-icon>
+          </div>
+        </div>
+      </div>
+      <!-- Dynamic Form phone -->
+      <div class="form-grid" formArrayName="subcategories">
+        <div
+          class="form-field"
+          *ngFor="
+            let skill of getCtrl('subcategories', formCategory).controls;
+            index as formChild;
+            let indexOfelement = index
+          "
+        >
+          <div class="levelContainerChild mt1" [formGroupName]="formChild">
+            <!-- Phone Field -->
+            <div class="levelParamContainer">
+              <!-- fields -->
+              <div class="fields">
+                <mat-form-field appearance="fill">
+                  <mat-label>Subcategoria</mat-label>
+                  <input
+                    matInput
+                    placeholder="Nombre de la subcategoria..."
+                    type="text"
+                    formControlName="subcategory"
+                  />
+                </mat-form-field>
+              </div>
+              <!-- delete -->
+              <div class="delete">
+                <!-- Delete Action -->
+                <mat-icon (click)="deleteSubcat(skill, $event, indexOfelement)"
+                  >delete</mat-icon
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-content class="productContent uploading" *ngIf="uploading">
+    <div class="loader">
+      <h2 *ngIf="action == 'update'">
+        Actualizando categoria...por favor, espera ​😘​🔥​
+      </h2>
+      <h2 *ngIf="action == 'create'">
+        Subiendo categoria...por favor, espera ​😘​🔥​
+      </h2>
+      <mat-spinner
+        class="progressUpdateProfileImg loaderProgress"
+        [mode]="progressProfileImgMode"
+        [diameter]="50"
+        color="primary"
+      ></mat-spinner>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="actions" *ngIf="!uploading">
+    <button mat-button class="matButton" mat-dialog-close *ngIf="!uploading">
+      <h2>Cancelar</h2>
+    </button>
+    <div class="blueButton" *ngIf="uploading">
+      <mat-spinner
+        class="progressUpdateProfileImg"
+        [mode]="progressProfileImgMode"
+        [diameter]="20"
+        color="white"
+      ></mat-spinner>
+    </div>
+    <button
+      mat-flat-button
+      class="matButton blueButton confirm"
+      *ngIf="!uploading"
+      (click)="createCategory(formCategory, action)"
+    >
+      <h2>Continuar</h2>
+    </button>
+  </mat-dialog-actions>
+</div>

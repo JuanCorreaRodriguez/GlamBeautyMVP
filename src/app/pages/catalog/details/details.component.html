@@ -1,0 +1,152 @@
+<div class="detailsCont">
+  <div class="secMedia">
+    <div class="gallery">
+      <div
+        class="galleryCont"
+        *ngFor="let i of mPSP.images"
+        (click)="selectMedia(i, 'image')"
+      >
+        <img [ngClass]="{ notSelected: mediaSelected != i }" [src]="i" alt="" />
+      </div>
+      <div
+        class="galleryCont"
+        *ngFor="let i of mPSP.videos"
+        (click)="selectMedia(i, 'video')"
+      >
+        <video
+          [ngClass]="{ notSelected: mediaSelected != i }"
+          [src]="i"
+          alt=""
+        ></video>
+      </div>
+    </div>
+    <div class="mainMedia">
+      <img
+        *ngIf="mediaSelectedT == 'image'"
+        [src]="mediaSelected"
+        alt=""
+        (click)="imagePreview(mediaSelected)"
+      />
+      <video
+        *ngIf="mediaSelectedT == 'video'"
+        [src]="mediaSelected"
+        alt=""
+        (click)="videoPreview(mediaSelected)"
+        controls
+      ></video>
+    </div>
+  </div>
+  <div class="secData">
+    <p class="sku">{{ mPSP.sku }}</p>
+    <p *ngIf="type == 'product'">Detalles de producto</p>
+    <p *ngIf="type == 'service'">Detalles de servico</p>
+    <p *ngIf="type == 'promo'">Detalles de promo</p>
+    <h2>{{ mPSP.name }}</h2>
+    <p>{{ mPSP.desc }}</p>
+    <mat-divider></mat-divider>
+
+    <!-- SHOW ONLY DOC == PRODUCT -->
+    <div class="detailsProd" *ngIf="type == 'product'">
+      <h3><mat-icon>category</mat-icon>{{ mPSP.category }}</h3>
+      <h3><mat-icon>inventory_2</mat-icon>{{ mPSP.stock }} disp.</h3>
+      <h3 class="discount" *ngIf="mPSP.discount > 0">
+        Descuento: {{ mPSP.discount }}
+      </h3>
+
+      <div class="succatsCont">
+        <div
+          class="subCats"
+          *ngFor="let sb of mPSP.subcategories; let j = index"
+        >
+          <p>{{ sb.subcategory }}</p>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="prodBrand">
+        <img
+          *ngIf="mPSP.brand.includes('hula')"
+          src="../../../assets/img/chula_logo.png"
+          alt=""
+        />
+        <img
+          *ngIf="mPSP.brand.includes('mh') || mPSP.brand.includes('MH')"
+          src="../../../assets/img/mh_logo.png"
+          alt=""
+        />
+        <img
+          *ngIf="mPSP.brand.includes('ovely')"
+          src="../../../assets/img/lovely_logo.png"
+          alt=""
+        />
+        <img
+          *ngIf="mPSP.brand.includes('tudio')"
+          src="../../../assets/img/studio_log.png"
+          alt=""
+        />
+        <img
+          *ngIf="mPSP.brand.includes('pizima')"
+          src="../../../assets/img/wapizima_logo.png"
+          alt=""
+        />
+        <h3 class="brand">{{ mPSP.brand }}</h3>
+        <h4 class="price">${{ mPSP.price }} <span>MXN</span></h4>
+      </div>
+
+      <mat-divider></mat-divider>
+    </div>
+
+    <!-- SHOW ONLY DOC == SERVICE -->
+    <div class="detailsProd detailsServ" *ngIf="type == 'service'">
+      <h3>{{ mPSP.category }}</h3>
+      <h3>Duración: {{ mPSP.duration }}</h3>
+      <h3 class="author">Titular: {{ mPSP.author }}</h3>
+      <h3 class="discount" *ngIf="mPSP.discount > 0">
+        Descuento: {{ mPSP.discount }}
+      </h3>
+
+      <div class="succatsCont">
+        <div
+          class="subCats"
+          *ngFor="let sb of mPSP.subcategories; let j = index"
+        >
+          <p>{{ sb.subcategory }}</p>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h3 class="price">${{ mPSP.price }} <span>MXN</span></h3>
+    </div>
+    <!-- SHOW ONLY DOC == PROMO -->
+    <div class="detailsProd detailsPromo" *ngIf="type == 'promo'">
+      <h3>{{ mPSP.category }}</h3>
+      <h3>Inicio: {{ mPSP.from | date }}</h3>
+      <h3>Válido hasta: {{ mPSP.to | date }}</h3>
+      <h3 class="discount" *ngIf="mPSP.discount > 0">
+        Descuento: <span *ngIf="mPSP.type.includes('$')">$</span>
+        {{ mPSP.discount }}
+        <span *ngIf="mPSP.type.includes('%')">%</span>
+      </h3>
+
+      <div class="succatsCont">
+        <div
+          class="subCats"
+          *ngFor="let sb of mPSP.subcategories; let j = index"
+        >
+          <p>{{ sb.subcategory }}</p>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="actions" *ngIf="type == 'product'">
+      <button mat-button (click)="goCatalog()">Seguir comprando</button>
+      <button mat-button (click)="addToCart(mPSP)">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

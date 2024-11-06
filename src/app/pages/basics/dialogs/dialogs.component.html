@@ -1,0 +1,20 @@
+<div class="containerDialog">
+  <h2 class="customTitleDialog">{{ gModelDialog.title }}</h2>
+
+  <mat-dialog-content>
+    <p class="customSubtitleDialog">{{ gModelDialog.message }}</p>
+
+    <!--<mat-card-subtitle *ngIf="ModelInfDialogData" class="customSubtitleDialog item">{{
+        gModelData.question
+      }}</mat-card-subtitle>-->
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="menuActions">
+    <button mat-button [mat-dialog-close]="false" (click)="cancel()">
+      {{ gModelDialog.cancel }}
+    </button>
+    <button class="matButton blueButton" mat-button [mat-dialog-close]="true">
+      {{ gModelDialog.continue }}
+    </button>
+  </mat-dialog-actions>
+</div>

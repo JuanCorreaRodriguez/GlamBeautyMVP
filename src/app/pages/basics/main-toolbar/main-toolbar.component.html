@@ -1,0 +1,110 @@
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row>
+    <img
+      class="imgToolbarGlam"
+      src="../../../../assets/img/glam_logo.webp"
+      (click)="goHome()"
+      alt="RSVP Online & Digital invitations - RSVP Online & Invitaciónes digitales"
+    />
+
+    <!-- Sidebar Switcher -->
+    <!-- <button
+        mat-icon-button
+        *ngIf="onDashboard"
+        (click)="updateSwitcherStatus()"
+        class="SideBtn"
+      >
+        <mat-icon class="iconSideBar" [ngClass]="{ colorIconsTop: !pageOnTop }">{{
+          iconSidebar
+        }}</mat-icon>
+      </button> -->
+
+    <!-- HOME -->
+    <button mat-button (click)="goHome()" aria-label="Nox46 home">
+      <mat-icon class="iconClear">home</mat-icon>
+    </button>
+
+    <span class="spacer"></span>
+
+    <!-- Theme -->
+    <div class="themeRow lanClass mr1">
+      <button
+        mat-button
+        value="dark-theme"
+        *ngIf="mode == 'dark_mode'"
+        style="color: var(--colorText) !important"
+        (click)="toggleTheme()"
+        aria-label="Nox46 Theme"
+      >
+        <mat-icon>dark_mode</mat-icon>
+      </button>
+      <button
+        mat-button
+        value="light-theme"
+        *ngIf="mode == 'light_mode'"
+        style="color: var(--colorText) !important"
+        (click)="toggleTheme()"
+      >
+        <mat-icon>light_mode</mat-icon>
+      </button>
+    </div>
+    <!-- Catalog -->
+    <div class="themeRow lanClass mr1">
+      <button
+        class="matButton"
+        mat-button
+        (click)="goCart()"
+        aria-label="Nox46 Catalog"
+        matTooltip="Mi carrito"
+        *ngIf="mCart.length > 0"
+        [matBadge]="mCart.length"
+        matBadgeColor="warn"
+        matBadgeSize="small"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+    </div>
+    <!-- Catalog -->
+    <div class="themeRow lanClass mr1">
+      <button
+        class="matButton"
+        mat-button
+        (click)="goCatalog()"
+        aria-label="Nox46 Catalog"
+        matTooltip="Catálogo"
+      >
+        <mat-icon>menu_book</mat-icon>
+      </button>
+    </div>
+    <!-- LOGIN  -->
+    <!-- <button
+        class="iconClear"
+        *ngIf="!username && !session"
+        mat-button
+        matTooltip="{{ 'Login.loginTessa' | translate }}"
+        (click)="goLogin()"
+        aria-label="Nox46 Login"
+      >
+        <mat-icon class="iconClear">person</mat-icon>
+      </button> -->
+
+    <!-- 
+        OPTIONS 
+    -->
+    <!-- <button
+      #menuTrigger="matMenuTrigger"
+      matBadgePosition="after"
+      matBadgeSize="small"
+      matBadgeColor="warn"
+      [matMenuTriggerFor]="options"
+      mat-button
+      class="matButton"
+      aria-label="Nox46 Options Panel"
+    >
+      <mat-icon class="iconSideBar iconClear">apps</mat-icon>
+    </button>
+    <mat-menu #options="matMenu">
+      <app-options></app-options>
+    </mat-menu> -->
+  </mat-toolbar-row>
+</mat-toolbar>

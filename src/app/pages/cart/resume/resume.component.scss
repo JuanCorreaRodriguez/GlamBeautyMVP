@@ -1,0 +1,190 @@
+.resumeCont {
+  height: max-content !important;
+  min-height: max-content !important;
+  // background-color: rebeccapurple;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+.head {
+  margin: 0rem auto 0rem auto;
+  h3 {
+    width: 100%;
+    margin: 0rem auto 0rem auto !important;
+    padding-top: 2rem !important;
+    font-size: 32px !important;
+    text-align: center !important;
+    font-family: var(--Script) !important;
+  }
+  h2 {
+    width: 80%;
+    margin: 0em auto !important;
+    font-size: 26px !important;
+    text-align: center !important;
+    font-family: var(--Manrope) !important;
+    font-weight: 700 !important;
+  }
+}
+.moon {
+  position: absolute;
+  top: -85%;
+  left: 0%;
+  opacity: 0.5;
+  width: 100vw;
+  height: auto;
+  transform: rotate(336deg) scale(0.5) translate(-50%, -10%);
+}
+.itemsCont {
+  width: 96%;
+  margin: 2.5em auto;
+}
+.eRowItem {
+  .row {
+    display: flex;
+    align-items: center;
+    .data {
+      width: 80%;
+      flex: 1 0 80%;
+      .itemName {
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        margin-top: 0em !important;
+        span {
+          font-size: 16px !important;
+          font-weight: 600 !important;
+          color: var(--colorIcons) !important;
+        }
+      }
+      .itemDesc {
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        color: var(--colorIcons) !important;
+      }
+    }
+
+    .priceTotal {
+      width: 20%;
+      flex: 0 1 20%;
+      h2 {
+        text-align: end !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        span {
+          font-size: 13px !important;
+          font-weight: 600 !important;
+          color: var(--colorIcons) !important;
+        }
+      }
+      .ind {
+        margin-top: 0.5em !important;
+        text-align: end !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        span {
+          font-size: 12px !important;
+          font-weight: 600 !important;
+          color: var(--colorIcons) !important;
+        }
+      }
+    }
+  }
+}
+.total {
+  width: 96%;
+  margin: 2.5em auto;
+  h2 {
+    width: 100%;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-align: end !important;
+  }
+  span {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: var(--colorIcons) !important;
+  }
+}
+.actions {
+  width: 96%;
+  margin: 1em auto 4em auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5em;
+  button {
+    min-width: 10em !important;
+  }
+  .ok {
+    background: var(--colorButton) !important;
+    h2 {
+      color: white !important;
+    }
+  }
+}
+.mat-divider {
+  margin: 0.65em auto !important;
+}
+.nameOrder {
+  width: 30% !important;
+  margin: 1.25em auto 0em auto !important;
+}
+.dis {
+  opacity: 0.35;
+}
+
+@media (max-width: 760px) {
+  .eRowItem {
+    .row {
+      .data {
+        width: 60%;
+        flex: 1 0 60%;
+        .itemName {
+          font-size: 14px !important;
+          span {
+            font-size: 14px !important;
+          }
+        }
+        .itemDesc {
+          font-size: 12px !important;
+        }
+      }
+
+      .priceTotal {
+        width: 40%;
+        flex: 0 1 40%;
+        h2 {
+          font-size: 14px !important;
+          span {
+            font-size: 11px !important;
+          }
+        }
+        .ind {
+          font-size: 11px !important;
+          span {
+            font-size: 11px !important;
+          }
+        }
+      }
+    }
+  }
+  .total {
+    margin: 1.5em auto;
+    h2 {
+      font-size: 16px !important;
+    }
+    span {
+      font-size: 13px !important;
+    }
+  }
+  .actions {
+    margin: 1em auto 3em auto !important;
+    button {
+      min-width: 8em !important;
+    }
+  }
+  .nameOrder {
+    width: 80% !important;
+  }
+}
+.mat-mdc-form-field {
+  width: 100%;
+}

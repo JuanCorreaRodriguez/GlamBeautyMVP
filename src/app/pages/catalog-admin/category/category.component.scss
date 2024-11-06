@@ -1,0 +1,174 @@
+.mainCatalog {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.mat-divider {
+  color: var(--colorIcons) !important;
+  background: var(--colorIcons) !important;
+  background-color: var(--colorIcons) !important;
+}
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1em;
+  margin: 2em auto;
+  .searchForm {
+    width: 50%;
+    .mat-mdc-form-field {
+      width: 100% !important;
+      min-width: 100% !important;
+    }
+    .mat-form-field {
+      width: 100% !important;
+      min-width: 100% !important;
+    }
+  }
+  .item {
+    button {
+      width: 6em;
+      height: 6em;
+      .mat-icon {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px !important;
+        background: var(--scroll);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+}
+.catsCardsCont {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 2.5em auto !important;
+  .cardCat {
+    width: 15em !important;
+    height: max-content;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    box-shadow: 0 0 8px var(--shadow) !important;
+    img {
+      width: 100%;
+      height: 15em;
+      object-fit: cover;
+      border-radius: 0.5em;
+    }
+    .cardHeader {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      width: 100%;
+      max-width: 100%;
+      padding: 0.5em;
+      box-sizing: border-box;
+      h2 {
+        width: calc(100% - 32px);
+        max-width: calc(100% - 32px);
+        flex: 1 0 80%;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+      }
+      .mat-icon {
+        width: 32px;
+        flex: 0 1 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px !important;
+      }
+      button {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        flex-wrap: nowrap;
+      }
+    }
+    .cardBody {
+      padding: 0.5em;
+      margin-top: 1em;
+      p {
+        font-weight: 500 !important;
+        font-size: 14px !important;
+      }
+    }
+  }
+}
+.red {
+  color: brown !important;
+}
+.succatsCont {
+  display: flex;
+  align-items: center;
+  gap: 0.15em;
+  box-sizing: border-box;
+  padding: 0.5em;
+  flex-wrap: wrap;
+  width: 65%;
+  flex: 1 0 65%;
+}
+.subCats {
+  p {
+    width: max-content;
+    padding: 0.5em !important;
+    border-radius: 0.5em;
+    background: var(--globalField) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .search {
+    gap: 0.5em;
+    margin: 1em auto 0em auto;
+    .searchForm {
+      width: 80%;
+      padding-top: 0em;
+    }
+    .item {
+      height: 5em;
+      button {
+        width: 3em;
+        height: 6em;
+        .mat-icon {
+          font-size: 32px !important;
+        }
+      }
+    }
+  }
+  .catsCardsCont {
+    margin: 1.5em auto 5em auto !important;
+    .cardCat {
+      width: 94% !important;
+      img {
+        width: 100%;
+        height: 8.5em;
+      }
+      .cardHeader {
+        h2 {
+          font-size: 14px !important;
+        }
+      }
+      .cardBody {
+        padding: 0.35em;
+        margin-top: 0.85em;
+        p {
+          font-weight: 600 !important;
+          font-size: 12px !important;
+        }
+        .succatsCont {
+          margin-top: 1em !important;
+        }
+      }
+    }
+  }
+}
